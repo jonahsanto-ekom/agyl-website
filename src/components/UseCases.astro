@@ -1,0 +1,699 @@
+---
+---
+    <!-- POSITIONING CALLOUT -->
+    <div class="position-callout">
+      <div class="pc-mark">A note on the category</div>
+      <h3>Master data management was built for <em>analytics</em>.<br>AGYL is built for <em>AI</em>.</h3>
+      <div class="pc-sub">Same architectural problem — many systems, conflicting records, the need for a trusted source. Different operating reality. Legacy MDM was designed in a world where the consumer of resolved data was a dashboard. AGYL is designed in a world where the consumer is an agent, a copilot, or a model acting on your behalf. The stakes, the latency requirements, and the governance posture are not the same.</div>
+    </div>
+
+    <!-- USE CASES -->
+    <section id="use-cases">
+      <div class="section-mark single"><div>What it looks like in practice</div></div>
+      <h2>Six examples. <em>Six moments the operating layer changes what's possible.</em></h2>
+
+      <div class="uc-intro">
+        <p class="body">Six places where the operating layer makes new things possible, drawn from where customers have started. <b>The list is not exhaustive.</b> Most operating functions inside a serious business have records that span systems, that drift, and that AI agents and copilots will quietly stumble over until something resolves them. AGYL resolves each of these inside the same architecture, with the same evidence chain and the same governance. Once they're live, the records talk to each other and the AI built on top of them stops being unreliable.</p>
+        <div class="uc-connector">
+          <b>How customers start</b>
+          One record first, almost always the one most exposed to the AI use cases on the roadmap. Customer master, supplier file, critical product line. Once it's resolved, the second comes faster because the context graph already understands your business. By the third, the records are talking to each other and the agents and copilots built on top of them have something reliable to read.
+        </div>
+      </div>
+
+      <div class="uc-nav" id="uc-nav">
+        <button class="active" data-uc="sales"><span class="uc-num">01</span> Sales</button>
+        <button data-uc="procurement"><span class="uc-num">02</span> Procurement</button>
+        <button data-uc="legal"><span class="uc-num">03</span> Legal &amp; Finance</button>
+        <button data-uc="ops"><span class="uc-num">04</span> Operations</button>
+        <button data-uc="people"><span class="uc-num">05</span> People</button>
+        <button data-uc="product"><span class="uc-num">06</span> Product Data</button>
+        <button data-uc="more"><span class="uc-num">07</span> And the rest</button>
+      </div>
+
+      <!-- SALES -->
+      <div class="uc-panel active" id="uc-sales">
+        <div class="uc-grid">
+          <div class="uc-content">
+            <div class="uc-label">Use Case 01 · Sales &amp; Revenue</div>
+            <h3>One account. <em>Three voices.</em> Thirty reps quoting different numbers.</h3>
+            <p class="body">In a $200M business, "Halsey, Inc." shows up as Halsey, Inc. in CRM, HALSEY, INC. in billing, and Halsey Industrial on a senior rep's private spreadsheet. Three reps quote three different prices on the same call week. Renewals miss because the contract end date lives in one system and the rep works from another.</p>
+            <p class="body"><b>AGYL resolves the customer master once.</b> Every account becomes one record with the active contract, true ARR, open opportunities, support history, and renewal date attached. Deployed back into the CRM the reps already use.</p>
+            <div class="uc-impact">
+              <div>WHAT AGENTS GET<b>One customer record, evidenced, current</b></div>
+              <div>WHAT AI CAN NOW DO<b>Quote, renew, route, score — on truth</b></div>
+            </div>
+            <div class="uc-cross">
+              <b>How it connects:</b> The resolved customer record cross-references the contract record (Use Case 03) for terms and the product record (Use Case 06) for what they actually buy. A copilot asked "what's our true exposure with this account" reads one answer, not three.
+            </div>
+          </div>
+          <div class="uc-visual">
+            <div class="uc-vh"><span>CUSTOMER MASTER · RESOLVING</span><span class="live">LIVE</span></div>
+            <svg viewBox="0 0 540 480">
+              <text class="svg-cap" x="0" y="20">THREE TOOLS · ONE CUSTOMER · DIFFERENT TRUTH</text>
+              <rect x="0" y="40" width="220" height="68" fill="rgba(201,168,117,.08)" stroke="rgba(201,168,117,.4)"/>
+              <text class="svg-lbl" x="14" y="62" fill="#C9A875">SALESFORCE</text>
+              <text class="svg-lbl" x="14" y="80">Halsey, Inc.</text>
+              <text class="svg-lbl-mute" x="14" y="98">$48,000 ARR · open opp $12K</text>
+              <rect x="0" y="116" width="220" height="68" fill="rgba(201,168,117,.08)" stroke="rgba(201,168,117,.4)"/>
+              <text class="svg-lbl" x="14" y="138" fill="#C9A875">SLACK · #revenue-ops</text>
+              <text class="svg-lbl" x="14" y="156">"Halsey $52.4K invoice"</text>
+              <text class="svg-lbl-mute" x="14" y="174">posted 2d ago, with PDF</text>
+              <rect x="0" y="192" width="220" height="68" fill="rgba(201,168,117,.08)" stroke="rgba(201,168,117,.4)"/>
+              <text class="svg-lbl" x="14" y="214" fill="#C9A875">NOTION · account brief</text>
+              <text class="svg-lbl" x="14" y="232">Halsey Industrial Supply</text>
+              <text class="svg-lbl-mute" x="14" y="250">renewal: "April-ish"</text>
+              <g fill="none" stroke="#F5F4F1" stroke-width="1" opacity=".5" class="stream">
+                <path d="M220 74 C 280 74, 300 220, 340 220"/>
+                <path d="M220 150 C 280 150, 300 220, 340 220"/>
+                <path d="M220 226 C 280 226, 300 220, 340 220"/>
+              </g>
+              <rect x="340" y="80" width="200" height="320" fill="rgba(122,154,127,.10)" stroke="rgba(122,154,127,.5)"/>
+              <text class="svg-cap" x="354" y="104" fill="#7A9A7F">RESOLVED · CONFIDENCE 0.96</text>
+              <text class="svg-h" x="354" y="138">Halsey, Inc.</text>
+              <text class="svg-lbl-mute" x="354" y="154">d/b/a Halsey Industrial Supply</text>
+              <line x1="354" y1="170" x2="528" y2="170" stroke="rgba(245,244,241,.10)"/>
+              <text class="svg-lbl-mute" x="354" y="194">True ARR</text>
+              <text class="svg-lbl" x="528" y="194" text-anchor="end">$52,400</text>
+              <text class="svg-lbl-mute" x="354" y="222">Open opp</text>
+              <text class="svg-lbl" x="528" y="222" text-anchor="end">$12,000</text>
+              <text class="svg-lbl-mute" x="354" y="250">Active contract</text>
+              <text class="svg-lbl" x="528" y="250" text-anchor="end">MSA-2024-118</text>
+              <text class="svg-lbl-mute" x="354" y="278">Renewal date</text>
+              <text class="svg-lbl" x="528" y="278" text-anchor="end" fill="#C9A875">April 14 · 47d</text>
+              <text class="svg-lbl-mute" x="354" y="306">MFN clause</text>
+              <text class="svg-lbl" x="528" y="306" text-anchor="end">Yes · ¶ 7.2</text>
+              <line x1="354" y1="326" x2="528" y2="326" stroke="rgba(245,244,241,.10)"/>
+              <text class="svg-cap" x="354" y="350" fill="#7A9A7F">DEPLOYED · CRM + SALES PORTAL</text>
+              <text class="svg-lbl-mute" x="354" y="370">Cited · governed · current</text>
+              <text class="svg-cap" x="0" y="450">3 sources → 1 resolved record</text>
+              <text class="svg-cap" x="540" y="450" text-anchor="end">Deployed to 30 reps</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROCUREMENT -->
+      <div class="uc-panel" id="uc-procurement">
+        <div class="uc-grid">
+          <div class="uc-content">
+            <div class="uc-label">Use Case 02 · Procurement &amp; Vendor Management</div>
+            <h3>You think you have 1,200 suppliers. <em>You actually have 740.</em></h3>
+            <p class="body">Duplicate vendor records inflate the master file. The same supplier shows up under three legal entities, two divisions, and one misspelling. Spend is fragmented, leverage is invisible, and certifications quietly expire because nobody owns the consolidated view.</p>
+            <p class="body"><b>AGYL resolves the supplier master against authoritative sources.</b> Legal entity registries, tax IDs, certification bodies, your own approval history. Every duplicate collapses. Every certification carries its expiration. True spend by parent entity surfaces ahead of every negotiation.</p>
+            <div class="uc-impact">
+              <div>WHAT AGENTS GET<b>One vendor per parent, certifications current</b></div>
+              <div>WHAT AI CAN NOW DO<b>Negotiate, route POs, score risk — accurately</b></div>
+            </div>
+            <div class="uc-cross">
+              <b>How it connects:</b> The resolved supplier record cross-references the contracts they're under (Use Case 03) and the equipment they service (Use Case 04). A procurement copilot asked "what's our real Tier-1 spend with this parent" returns the consolidated number, not the duplicates.
+            </div>
+          </div>
+          <div class="uc-visual">
+            <div class="uc-vh"><span>SUPPLIER MASTER · CONSOLIDATING</span><span class="live">LIVE</span></div>
+            <svg viewBox="0 0 540 480">
+              <text class="svg-cap" x="0" y="20">BEFORE · SIX VENDOR RECORDS · ONE PARENT</text>
+              <rect x="0" y="36" width="220" height="36" fill="rgba(201,168,117,.06)" stroke="rgba(201,168,117,.3)"/>
+              <text class="svg-lbl" x="14" y="58">Bussmann Industries</text>
+              <text class="svg-lbl-mute" x="206" y="58" text-anchor="end">$182K</text>
+              <rect x="0" y="78" width="220" height="36" fill="rgba(201,168,117,.06)" stroke="rgba(201,168,117,.3)"/>
+              <text class="svg-lbl" x="14" y="100">Bussmann Ind. Inc.</text>
+              <text class="svg-lbl-mute" x="206" y="100" text-anchor="end">$94K</text>
+              <rect x="0" y="120" width="220" height="36" fill="rgba(201,168,117,.06)" stroke="rgba(201,168,117,.3)"/>
+              <text class="svg-lbl" x="14" y="142">BUSSMAN INDUSTRIES</text>
+              <text class="svg-lbl-mute" x="206" y="142" text-anchor="end">$48K</text>
+              <rect x="0" y="162" width="220" height="36" fill="rgba(201,168,117,.06)" stroke="rgba(201,168,117,.3)"/>
+              <text class="svg-lbl" x="14" y="184">Eaton/Bussmann</text>
+              <text class="svg-lbl-mute" x="206" y="184" text-anchor="end">$22K</text>
+              <rect x="0" y="204" width="220" height="36" fill="rgba(201,168,117,.06)" stroke="rgba(201,168,117,.3)"/>
+              <text class="svg-lbl" x="14" y="226">Bussmann (NC)</text>
+              <text class="svg-lbl-mute" x="206" y="226" text-anchor="end">$67K</text>
+              <rect x="0" y="246" width="220" height="36" fill="rgba(201,168,117,.06)" stroke="rgba(201,168,117,.3)"/>
+              <text class="svg-lbl" x="14" y="268">Bussmann Fuse Co</text>
+              <text class="svg-lbl-mute" x="206" y="268" text-anchor="end">$45K</text>
+              <g fill="none" stroke="#F5F4F1" stroke-width="1" opacity=".4" class="stream">
+                <path d="M220 54 C 280 54, 290 240, 340 240"/>
+                <path d="M220 96 C 280 96, 290 240, 340 240"/>
+                <path d="M220 138 C 280 138, 290 240, 340 240"/>
+                <path d="M220 180 C 280 180, 290 240, 340 240"/>
+                <path d="M220 222 C 280 222, 290 240, 340 240"/>
+                <path d="M220 264 C 280 264, 290 240, 340 240"/>
+              </g>
+              <rect x="340" y="80" width="200" height="320" fill="rgba(122,154,127,.10)" stroke="rgba(122,154,127,.5)"/>
+              <text class="svg-cap" x="354" y="104" fill="#7A9A7F">RESOLVED · 1 PARENT ENTITY</text>
+              <text class="svg-h" x="354" y="138">Eaton Bussmann Division</text>
+              <text class="svg-lbl-mute" x="354" y="154">parent: Eaton Corp. · DUNS 048-5</text>
+              <line x1="354" y1="170" x2="528" y2="170" stroke="rgba(245,244,241,.10)"/>
+              <text class="svg-lbl-mute" x="354" y="194">Total spend</text>
+              <text class="svg-num" x="528" y="200" text-anchor="end">$458K</text>
+              <text class="svg-lbl-mute" x="354" y="232">Records collapsed</text>
+              <text class="svg-lbl" x="528" y="232" text-anchor="end">6 → 1</text>
+              <text class="svg-lbl-mute" x="354" y="260">Tier-1 status</text>
+              <text class="svg-lbl" x="528" y="260" text-anchor="end">Earned</text>
+              <text class="svg-lbl-mute" x="354" y="288">ISO 9001</text>
+              <text class="svg-lbl" x="528" y="288" text-anchor="end">Current</text>
+              <text class="svg-lbl-mute" x="354" y="316">RoHS cert</text>
+              <text class="svg-lbl" x="528" y="316" text-anchor="end" fill="#C9A875">Expires 92d</text>
+              <line x1="354" y1="334" x2="528" y2="334" stroke="rgba(245,244,241,.10)"/>
+              <text class="svg-cap" x="354" y="358" fill="#7A9A7F">DEPLOYED · ERP + PROCUREMENT</text>
+              <text class="svg-lbl-mute" x="354" y="378">DUNS · tax ID · cert authority</text>
+              <text class="svg-cap" x="0" y="450">Spend visible by parent for first time</text>
+              <text class="svg-cap" x="540" y="450" text-anchor="end">$458K from $182K visible</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- LEGAL -->
+      <div class="uc-panel" id="uc-legal">
+        <div class="uc-grid">
+          <div class="uc-content">
+            <div class="uc-label">Use Case 03 · Legal &amp; Finance</div>
+            <h3>The MFN clause nobody remembered. <em>The $400K auto-renewal nobody flagged.</em></h3>
+            <p class="body">Contracts live in PDFs, in counsel's drawers, in a DMS, in the original counterparty's outbox. The obligations they create, MFN clauses, renewal windows, indemnity caps, audit rights, are invisible until they bite. CFOs find out about a $400K auto-renewal the day it processes.</p>
+            <p class="body"><b>AGYL resolves the contract layer.</b> Every active agreement becomes a record with its key obligations extracted, cited to the exact clause and page, scored on confidence, and surfaced on a timeline. Legal validates the high-stakes calls. Finance sees the calendar of obligations for the first time.</p>
+            <div class="uc-impact">
+              <div>WHAT AGENTS GET<b>Every obligation, cited to page and clause</b></div>
+              <div>WHAT AI CAN NOW DO<b>Flag, route, summarize — without hallucinating terms</b></div>
+            </div>
+            <div class="uc-cross">
+              <b>How it connects:</b> Contract records bind the customer master (Use Case 01) and the supplier master (Use Case 02). When a CFO asks a copilot "what auto-renewals are coming," the answer comes from one trusted source with the citations attached.
+            </div>
+          </div>
+          <div class="uc-visual">
+            <div class="uc-vh"><span>OBLIGATIONS · RESOLVED FROM CONTRACT</span><span class="live">LIVE</span></div>
+            <svg viewBox="0 0 540 520">
+              <text class="svg-cap" x="0" y="20">DOCUSIGN · MSA-2024-118 · 47 PAGES</text>
+              <rect x="0" y="36" width="180" height="220" fill="rgba(245,244,241,.04)" stroke="rgba(245,244,241,.15)"/>
+              <text class="svg-lbl" x="14" y="58">Master Service Agreement</text>
+              <text class="svg-lbl-mute" x="14" y="76">Halsey, Inc. · Counterparty</text>
+              <line x1="14" y1="90" x2="166" y2="90" stroke="rgba(245,244,241,.1)"/>
+              <g fill="rgba(245,244,241,.25)">
+                <rect x="14" y="100" width="152" height="2"/>
+                <rect x="14" y="110" width="130" height="2"/>
+                <rect x="14" y="120" width="148" height="2"/>
+                <rect x="14" y="130" width="142" height="2"/>
+                <rect x="14" y="140" width="138" height="2"/>
+                <rect x="14" y="150" width="152" height="2"/>
+                <rect x="14" y="170" width="120" height="2"/>
+                <rect x="14" y="180" width="148" height="2"/>
+                <rect x="14" y="190" width="138" height="2"/>
+                <rect x="14" y="200" width="142" height="2"/>
+                <rect x="14" y="210" width="132" height="2"/>
+                <rect x="14" y="220" width="146" height="2"/>
+              </g>
+              <text class="svg-lbl-mute" x="14" y="244">Executed 2024-04-14</text>
+              <g fill="none" stroke="#F5F4F1" stroke-width="1" opacity=".4" class="stream">
+                <path d="M180 80 C 240 80, 260 90, 320 90"/>
+                <path d="M180 130 C 240 130, 260 170, 320 170"/>
+                <path d="M180 170 C 240 170, 260 250, 320 250"/>
+                <path d="M180 210 C 240 210, 260 330, 320 330"/>
+                <path d="M180 240 C 240 240, 260 410, 320 410"/>
+              </g>
+              <text class="svg-cap" x="320" y="20">RESOLVED OBLIGATIONS</text>
+              <rect x="320" y="64" width="220" height="56" fill="rgba(122,154,127,.08)" stroke="rgba(122,154,127,.4)"/>
+              <text class="svg-lbl" x="334" y="84">Renewal date</text>
+              <text class="svg-lbl-mute" x="334" y="102">¶ 12.1 · auto-renew 30d notice</text>
+              <text class="svg-lbl" x="528" y="100" text-anchor="end" fill="#C9A875">Apr 14 · 47d</text>
+              <rect x="320" y="128" width="220" height="56" fill="rgba(122,154,127,.08)" stroke="rgba(122,154,127,.4)"/>
+              <text class="svg-lbl" x="334" y="148">MFN clause</text>
+              <text class="svg-lbl-mute" x="334" y="166">¶ 7.2 · price-match obligation</text>
+              <text class="svg-lbl" x="528" y="164" text-anchor="end">Active</text>
+              <rect x="320" y="192" width="220" height="56" fill="rgba(122,154,127,.08)" stroke="rgba(122,154,127,.4)"/>
+              <text class="svg-lbl" x="334" y="212">Indemnity cap</text>
+              <text class="svg-lbl-mute" x="334" y="230">¶ 14.4 · 12mo fees · mutual</text>
+              <text class="svg-lbl" x="528" y="228" text-anchor="end">$520K</text>
+              <rect x="320" y="256" width="220" height="56" fill="rgba(122,154,127,.08)" stroke="rgba(122,154,127,.4)"/>
+              <text class="svg-lbl" x="334" y="276">Audit right</text>
+              <text class="svg-lbl-mute" x="334" y="294">¶ 9.3 · 30d notice · annual</text>
+              <text class="svg-lbl" x="528" y="292" text-anchor="end">Reserved</text>
+              <rect x="320" y="320" width="220" height="56" fill="rgba(122,154,127,.08)" stroke="rgba(122,154,127,.4)"/>
+              <text class="svg-lbl" x="334" y="340">Data processing</text>
+              <text class="svg-lbl-mute" x="334" y="358">Exh. C · DPA · GDPR Article 28</text>
+              <text class="svg-lbl" x="528" y="356" text-anchor="end">Compliant</text>
+              <line x1="0" y1="404" x2="540" y2="404" stroke="rgba(245,244,241,.10)"/>
+              <text class="svg-cap" x="0" y="424" fill="#7A9A7F">DEPLOYED · CALENDAR + RISK REGISTER</text>
+              <text class="svg-lbl-mute" x="0" y="442">Every obligation cited to page &amp; clause</text>
+              <text class="svg-cap" x="0" y="490">47-page PDF</text>
+              <text class="svg-cap" x="540" y="490" text-anchor="end">5 resolved obligations · auditable</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- OPERATIONS -->
+      <div class="uc-panel" id="uc-ops">
+        <div class="uc-grid">
+          <div class="uc-content">
+            <div class="uc-label">Use Case 04 · Operations &amp; Field Service</div>
+            <h3>Same asset, in <em>three systems</em>, no two records agreeing.</h3>
+            <p class="body">It happens with any physical asset a business depends on: facility equipment, fleet vehicles, manufacturing lines, IT hardware, medical devices. The maintenance system has one model number, the warranty portal has another, the original install record has a third. The wrong part gets ordered. The next visit is two weeks out. Warranties go unclaimed because the paperwork doesn't match.</p>
+            <p class="body"><b>AGYL resolves the asset registry.</b> Every asset becomes one record with its model, serial, warranty terms, service history, OEM bulletins, and the right parts cross-referenced. Field teams see the truth before dispatch. Procurement reads the same asset as Operations. Finance doesn't lose claims that should have been filed.</p>
+            <div class="uc-impact">
+              <div>WHAT AGENTS GET<b>One asset, evidenced, with current warranty and parts</b></div>
+              <div>WHAT AI CAN NOW DO<b>Dispatch, pre-order parts, file claims — correctly</b></div>
+            </div>
+            <div class="uc-cross">
+              <b>How it connects:</b> The asset record cross-references the supplier master (Use Case 02) for OEM lookups and the contract record (Use Case 03) for service terms. A field copilot asked "is this still under warranty" reads one resolved answer, not three different system snapshots.
+            </div>
+          </div>
+          <div class="uc-visual">
+            <div class="uc-vh"><span>ASSET REGISTRY · RECONCILING</span><span class="live">LIVE</span></div>
+            <svg viewBox="0 0 540 480">
+              <text class="svg-cap" x="0" y="20">THREE SYSTEMS · ONE PHYSICAL ASSET</text>
+              <rect x="0" y="40" width="220" height="56" fill="rgba(201,168,117,.08)" stroke="rgba(201,168,117,.4)"/>
+              <text class="svg-lbl" x="14" y="60" fill="#C9A875">UPKEEP · CMMS</text>
+              <text class="svg-lbl-mute" x="14" y="78">Carrier 30XA-1502</text>
+              <text class="svg-lbl-mute" x="14" y="92">last service: 2024-08</text>
+              <rect x="0" y="104" width="220" height="56" fill="rgba(201,168,117,.08)" stroke="rgba(201,168,117,.4)"/>
+              <text class="svg-lbl" x="14" y="124" fill="#C9A875">SERVICENOW · WARRANTY</text>
+              <text class="svg-lbl-mute" x="14" y="142">Carrier 30XA1502B</text>
+              <text class="svg-lbl-mute" x="14" y="156">serial: 4581-22-A</text>
+              <rect x="0" y="168" width="220" height="56" fill="rgba(201,168,117,.08)" stroke="rgba(201,168,117,.4)"/>
+              <text class="svg-lbl" x="14" y="188" fill="#C9A875">SHAREPOINT · INSTALL</text>
+              <text class="svg-lbl-mute" x="14" y="206">30XA Series · 150 ton</text>
+              <text class="svg-lbl-mute" x="14" y="220">install date: 2022-06-14</text>
+              <g fill="none" stroke="#F5F4F1" stroke-width="1" opacity=".5" class="stream">
+                <path d="M220 68 C 280 68, 290 200, 340 200"/>
+                <path d="M220 132 C 280 132, 290 200, 340 200"/>
+                <path d="M220 196 C 280 196, 290 200, 340 200"/>
+              </g>
+              <rect x="340" y="40" width="200" height="380" fill="rgba(122,154,127,.10)" stroke="rgba(122,154,127,.5)"/>
+              <text class="svg-cap" x="354" y="64" fill="#7A9A7F">RESOLVED · ASSET #4581</text>
+              <text class="svg-h" x="354" y="92">Carrier 30XA-1502B</text>
+              <text class="svg-lbl-mute" x="354" y="108">150-ton air-cooled chiller</text>
+              <line x1="354" y1="124" x2="528" y2="124" stroke="rgba(245,244,241,.10)"/>
+              <text class="svg-lbl-mute" x="354" y="148">Serial</text>
+              <text class="svg-lbl" x="528" y="148" text-anchor="end">4581-22-A</text>
+              <text class="svg-lbl-mute" x="354" y="176">Installed</text>
+              <text class="svg-lbl" x="528" y="176" text-anchor="end">2022-06-14</text>
+              <text class="svg-lbl-mute" x="354" y="204">Warranty</text>
+              <text class="svg-lbl" x="528" y="204" text-anchor="end" fill="#7A9A7F">Active · 14mo</text>
+              <text class="svg-lbl-mute" x="354" y="232">Last service</text>
+              <text class="svg-lbl" x="528" y="232" text-anchor="end">2024-08-12</text>
+              <text class="svg-lbl-mute" x="354" y="260">OEM bulletin</text>
+              <text class="svg-lbl" x="528" y="260" text-anchor="end" fill="#C9A875">SB-30XA-09 due</text>
+              <text class="svg-lbl-mute" x="354" y="288">Required part</text>
+              <text class="svg-lbl" x="528" y="288" text-anchor="end">EC-451-B</text>
+              <line x1="354" y1="306" x2="528" y2="306" stroke="rgba(245,244,241,.10)"/>
+              <text class="svg-cap" x="354" y="330" fill="#7A9A7F">DEPLOYED · FIELD APP + DISPATCH</text>
+              <text class="svg-lbl-mute" x="354" y="350">Pre-dispatch validation enabled</text>
+              <text class="svg-lbl-mute" x="354" y="366">Warranty paperwork pre-attached</text>
+              <text class="svg-lbl-mute" x="354" y="382">Tech reads truth before truck rolls</text>
+              <text class="svg-cap" x="0" y="450">3 conflicting records → 1 asset</text>
+              <text class="svg-cap" x="540" y="450" text-anchor="end">First-visit resolution restored</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- PEOPLE -->
+      <div class="uc-panel" id="uc-people">
+        <div class="uc-grid">
+          <div class="uc-content">
+            <div class="uc-label">Use Case 05 · People &amp; Capability</div>
+            <h3>You need someone <em>who's actually done this</em>. By Friday.</h3>
+            <p class="body">A new project lands and needs staffing. The HR system has job titles. The certifications database has credentials, some expired. Project records show what people shipped, in detail. Code commits and tickets show what they actually built. Peer attestation in Slack shows who other engineers ask when something's hard. None of these systems agree on what your people are capable of, so staffing decisions get made on the wrong signal — title, tenure, or availability — instead of demonstrated expertise.</p>
+            <p class="body"><b>AGYL resolves the capability record.</b> Every person becomes a structured account of demonstrated skill, drawn from authoritative sources, validated by their team and themselves, and kept current. The right person on the right project gets named in seconds. When someone leaves, what they knew stays in the system instead of walking out with them.</p>
+            <div class="uc-impact">
+              <div>WHAT AGENTS GET<b>One capability record, cited to demonstrated work</b></div>
+              <div>WHAT AI CAN NOW DO<b>Staff, route, assign — on actual expertise</b></div>
+            </div>
+            <div class="uc-cross">
+              <b>How it connects:</b> The capability record is the foundation for assigning who handles which customer (Use Case 01) and who can sign off on which contract (Use Case 03). A staffing copilot asked "who can lead this project Monday" returns evidence, not titles.
+            </div>
+          </div>
+          <div class="uc-visual">
+            <div class="uc-vh"><span>CAPABILITY RECORD · RESOLVING</span><span class="live">LIVE</span></div>
+            <svg viewBox="0 0 540 480">
+              <text class="svg-cap" x="0" y="20">FIVE SOURCES · ONE PERSON</text>
+              <rect x="0" y="36" width="220" height="36" fill="rgba(245,244,241,.04)" stroke="rgba(245,244,241,.15)"/>
+              <text class="svg-lbl" x="14" y="58">Workday · Senior Engineer</text>
+              <rect x="0" y="78" width="220" height="36" fill="rgba(245,244,241,.04)" stroke="rgba(245,244,241,.15)"/>
+              <text class="svg-lbl" x="14" y="100">Credly · AWS, K8s (renew 60d)</text>
+              <rect x="0" y="120" width="220" height="36" fill="rgba(245,244,241,.04)" stroke="rgba(245,244,241,.15)"/>
+              <text class="svg-lbl" x="14" y="142">Linear · 14 projects shipped</text>
+              <rect x="0" y="162" width="220" height="36" fill="rgba(245,244,241,.04)" stroke="rgba(245,244,241,.15)"/>
+              <text class="svg-lbl" x="14" y="184">GitHub · 2.4k commits · payments</text>
+              <rect x="0" y="204" width="220" height="36" fill="rgba(245,244,241,.04)" stroke="rgba(245,244,241,.15)"/>
+              <text class="svg-lbl" x="14" y="226">Slack · "go-to for payments"</text>
+              <g fill="none" stroke="#F5F4F1" stroke-width="1" opacity=".5" class="stream">
+                <path d="M220 54 C 280 54, 290 210, 340 210"/>
+                <path d="M220 96 C 280 96, 290 210, 340 210"/>
+                <path d="M220 138 C 280 138, 290 210, 340 210"/>
+                <path d="M220 180 C 280 180, 290 210, 340 210"/>
+                <path d="M220 222 C 280 222, 290 210, 340 210"/>
+              </g>
+              <rect x="340" y="40" width="200" height="380" fill="rgba(122,154,127,.10)" stroke="rgba(122,154,127,.5)"/>
+              <text class="svg-cap" x="354" y="64" fill="#7A9A7F">RESOLVED CAPABILITY</text>
+              <text class="svg-h" x="354" y="92">M. Chen</text>
+              <text class="svg-lbl-mute" x="354" y="108">Senior Engineer · Payments</text>
+              <line x1="354" y1="124" x2="528" y2="124" stroke="rgba(245,244,241,.10)"/>
+              <text class="svg-cap" x="354" y="146">VALIDATED EXPERTISE</text>
+              <text class="svg-lbl-mute" x="354" y="170">Payment systems</text>
+              <text class="svg-lbl" x="528" y="170" text-anchor="end" fill="#7A9A7F">L5 · cited</text>
+              <text class="svg-lbl-mute" x="354" y="194">Distributed systems</text>
+              <text class="svg-lbl" x="528" y="194" text-anchor="end" fill="#7A9A7F">L4 · cited</text>
+              <text class="svg-lbl-mute" x="354" y="218">SOC 2 audits</text>
+              <text class="svg-lbl" x="528" y="218" text-anchor="end" fill="#7A9A7F">L4 · cited</text>
+              <text class="svg-lbl-mute" x="354" y="246">Mentorship</text>
+              <text class="svg-lbl" x="528" y="246" text-anchor="end">Active · 3 reports</text>
+              <line x1="354" y1="264" x2="528" y2="264" stroke="rgba(245,244,241,.10)"/>
+              <text class="svg-cap" x="354" y="284">CREDENTIALS</text>
+              <text class="svg-lbl-mute" x="354" y="306">AWS Solutions Architect</text>
+              <text class="svg-lbl" x="528" y="306" text-anchor="end">Current</text>
+              <text class="svg-lbl-mute" x="354" y="328">Kubernetes CKA</text>
+              <text class="svg-lbl" x="528" y="328" text-anchor="end" fill="#C9A875">Renew 60d</text>
+              <line x1="354" y1="346" x2="528" y2="346" stroke="rgba(245,244,241,.10)"/>
+              <text class="svg-cap" x="354" y="368" fill="#7A9A7F">DEPLOYED · STAFFING + SUCCESSION</text>
+              <text class="svg-lbl-mute" x="354" y="388">Self-validated · peer-validated</text>
+              <text class="svg-cap" x="0" y="450">Title ≠ capability</text>
+              <text class="svg-cap" x="540" y="450" text-anchor="end">Capability, cited and current</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- PRODUCT -->
+      <div class="uc-panel" id="uc-product">
+        <div class="uc-grid">
+          <div class="uc-content">
+            <div class="uc-label">Use Case 06 · Product Data</div>
+            <h3>500,000 products. 4,000 attributes each. <em>In production.</em></h3>
+            <p class="body">A circuit breaker is rated 5A in one field and 15A in three others. On an electrical part, the wrong rating isn't a typo; it's a safety issue. An AI agent generating an answer about that product, a copilot recommending it to a buyer, or a marketplace feed publishing it to retail will all act on whichever record wins the race. Across 500,000 products and 4,000 attributes each, no team reads every record by hand. <b>This is where AI in commerce hits its limit, and EKOM is the operating layer that pushes that limit back.</b></p>
+            <p class="body">EKOM is AGYL's flagship product, the first application of the operating layer to be productized as a standalone. Commerce-team demand pulled it out as its own brand and its own go-to-market. <b>It runs in production today across the catalog, and it is the layer the AI built on top of that catalog reads from.</b></p>
+            <div class="uc-impact">
+              <div>2.1M FIELDS RECONCILED<b>Across 11 systems · electrical distributor</b></div>
+              <div>96% FIRST-PASS<b>Resolvable without human review</b></div>
+            </div>
+            <div class="uc-cross">
+              <b>How it connects:</b> The product record feeds the customer master (Use Case 01) for what each account actually buys, and the supplier master (Use Case 02) for who makes it. Run as a dedicated product at <a href="https://ekom.ai" style="color:var(--ink);text-decoration:underline">ekom.ai</a>.
+            </div>
+          </div>
+          <div class="uc-visual">
+            <div class="uc-vh"><span>PRODUCT RECORD · RESOLVING</span><span class="live">LIVE</span></div>
+            <svg viewBox="0 0 540 480">
+              <text class="svg-cap" x="0" y="20">4 SYSTEMS · INDUSTRIAL FUSE</text>
+              <rect x="0" y="40" width="220" height="44" fill="rgba(184,120,120,.10)" stroke="rgba(184,120,120,.5)"/>
+              <text class="svg-lbl" x="14" y="60" fill="#B87878">AMPERAGE FIELD</text>
+              <text class="svg-lbl" x="206" y="72" text-anchor="end" fill="#B87878">5 A · conflict</text>
+              <rect x="0" y="92" width="220" height="44" fill="rgba(245,244,241,.04)" stroke="rgba(245,244,241,.15)"/>
+              <text class="svg-lbl" x="14" y="112">CATALOG NUMBER</text>
+              <text class="svg-lbl" x="206" y="124" text-anchor="end">15 A · BUSSMANN_TCF15</text>
+              <rect x="0" y="144" width="220" height="44" fill="rgba(245,244,241,.04)" stroke="rgba(245,244,241,.15)"/>
+              <text class="svg-lbl" x="14" y="164">ERP DESCRIPTION</text>
+              <text class="svg-lbl" x="206" y="176" text-anchor="end">15 A circuit</text>
+              <rect x="0" y="196" width="220" height="44" fill="rgba(245,244,241,.04)" stroke="rgba(245,244,241,.15)"/>
+              <text class="svg-lbl" x="14" y="216">DATASHEET</text>
+              <text class="svg-lbl" x="206" y="228" text-anchor="end">15 A · UL 248-4</text>
+              <g fill="none" stroke="#F5F4F1" stroke-width="1" opacity=".5" class="stream">
+                <path d="M220 62 C 280 62, 290 220, 340 220"/>
+                <path d="M220 114 C 280 114, 290 220, 340 220"/>
+                <path d="M220 166 C 280 166, 290 220, 340 220"/>
+                <path d="M220 218 C 280 218, 290 220, 340 220"/>
+              </g>
+              <rect x="340" y="40" width="200" height="380" fill="rgba(122,154,127,.10)" stroke="rgba(122,154,127,.5)"/>
+              <text class="svg-cap" x="354" y="64" fill="#7A9A7F">RESOLVED · CONFIDENCE 0.97</text>
+              <text class="svg-num" x="354" y="106">15 A</text>
+              <text class="svg-lbl-mute" x="354" y="124">amperage rating</text>
+              <line x1="354" y1="142" x2="528" y2="142" stroke="rgba(245,244,241,.10)"/>
+              <text class="svg-cap" x="354" y="164">EVIDENCE</text>
+              <text class="svg-lbl-mute" x="354" y="186">3 of 4 fields agree</text>
+              <text class="svg-lbl" x="528" y="186" text-anchor="end" fill="#7A9A7F">✓</text>
+              <text class="svg-lbl-mute" x="354" y="208">UL 248-4 standard</text>
+              <text class="svg-lbl" x="528" y="208" text-anchor="end" fill="#7A9A7F">cited</text>
+              <text class="svg-lbl-mute" x="354" y="230">Datasheet · Eaton</text>
+              <text class="svg-lbl" x="528" y="230" text-anchor="end" fill="#7A9A7F">cited</text>
+              <text class="svg-lbl-mute" x="354" y="252">Approver · D.M.</text>
+              <text class="svg-lbl" x="528" y="252" text-anchor="end">recorded</text>
+              <line x1="354" y1="270" x2="528" y2="270" stroke="rgba(245,244,241,.10)"/>
+              <text class="svg-cap" x="354" y="294" fill="#7A9A7F">APPLY TO 312 SIMILAR · APPROVE</text>
+              <text class="svg-lbl-mute" x="354" y="316">Decision enters context graph</text>
+              <line x1="354" y1="334" x2="528" y2="334" stroke="rgba(245,244,241,.10)"/>
+              <text class="svg-cap" x="354" y="358" fill="#7A9A7F">DEPLOYED · PIM + 9 ENDPOINTS</text>
+              <text class="svg-lbl-mute" x="354" y="378">Marketplace · retailer · search · AI</text>
+              <text class="svg-cap" x="0" y="450">5A field → safety risk</text>
+              <text class="svg-cap" x="540" y="450" text-anchor="end">Visit ekom.ai →</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- AND THE REST -->
+      <div class="uc-panel" id="uc-more">
+        <div class="uc-grid">
+          <div class="uc-content">
+            <div class="uc-label">Use Case 07 · The list isn't exhaustive</div>
+            <h3>If a record matters and lives in many places, <em>it qualifies.</em></h3>
+            <p class="body">The six examples above are where customers have actually started. They're not the limit of what the operating layer can do. Most operating functions inside a serious business have records that span systems, that drift, and that AI investments will quietly stumble over until something resolves them.</p>
+            <p class="body"><b>If you have a record that matters, lives in many places, and isn't reliable enough to act on, AGYL applies.</b> The architecture is the same. The evidence chain is the same. The team that helps you stand it up is the same. What changes is the shape of the record and the tools the data lives in.</p>
+            <div class="uc-impact">
+              <div>WHERE TO START<b>The record that hurts the most this quarter</b></div>
+              <div>WHERE IT GOES<b>Anywhere your team can describe a standard for "right"</b></div>
+            </div>
+            <div class="uc-cross">
+              <b>Examples customers have raised:</b> compliance and audit records, marketing assets and brand data, risk registers, project portfolios, partnership records, claims and warranties, training records, security and access logs, R&amp;D pipelines, sustainability and ESG data.
+            </div>
+          </div>
+          <div class="uc-visual">
+            <div class="uc-vh"><span>OTHER DOMAINS · CANDIDATES</span><span class="live">QUALIFIED</span></div>
+            <svg viewBox="0 0 540 480" role="img" aria-label="Other operating domains where the operating layer applies">
+              <text class="svg-cap" x="0" y="20">CANDIDATES SEEN ACROSS CUSTOMERS</text>
+
+              <g>
+                <rect x="0" y="40" width="260" height="42" fill="rgba(245,244,241,.04)" stroke="rgba(245,244,241,.15)"/>
+                <text class="svg-lbl" x="14" y="60">Compliance &amp; audit</text>
+                <text class="svg-lbl-mute" x="14" y="76">controls, evidence, attestations</text>
+
+                <rect x="0" y="90" width="260" height="42" fill="rgba(245,244,241,.04)" stroke="rgba(245,244,241,.15)"/>
+                <text class="svg-lbl" x="14" y="110">Marketing &amp; brand assets</text>
+                <text class="svg-lbl-mute" x="14" y="126">copy, imagery, claims, usage rights</text>
+
+                <rect x="0" y="140" width="260" height="42" fill="rgba(245,244,241,.04)" stroke="rgba(245,244,241,.15)"/>
+                <text class="svg-lbl" x="14" y="160">Risk registers</text>
+                <text class="svg-lbl-mute" x="14" y="176">cyber, operational, third-party</text>
+
+                <rect x="0" y="190" width="260" height="42" fill="rgba(245,244,241,.04)" stroke="rgba(245,244,241,.15)"/>
+                <text class="svg-lbl" x="14" y="210">Project portfolios</text>
+                <text class="svg-lbl-mute" x="14" y="226">scope, status, dependencies, owners</text>
+
+                <rect x="0" y="240" width="260" height="42" fill="rgba(245,244,241,.04)" stroke="rgba(245,244,241,.15)"/>
+                <text class="svg-lbl" x="14" y="260">Partnership records</text>
+                <text class="svg-lbl-mute" x="14" y="276">channel partners, MDF, performance</text>
+
+                <rect x="0" y="290" width="260" height="42" fill="rgba(245,244,241,.04)" stroke="rgba(245,244,241,.15)"/>
+                <text class="svg-lbl" x="14" y="310">Training &amp; access</text>
+                <text class="svg-lbl-mute" x="14" y="326">who's certified, who has rights, where</text>
+
+                <rect x="0" y="340" width="260" height="42" fill="rgba(245,244,241,.04)" stroke="rgba(245,244,241,.15)"/>
+                <text class="svg-lbl" x="14" y="360">Claims &amp; warranties</text>
+                <text class="svg-lbl-mute" x="14" y="376">filed, pending, recoverable</text>
+
+                <rect x="0" y="390" width="260" height="42" fill="rgba(245,244,241,.04)" stroke="rgba(245,244,241,.15)"/>
+                <text class="svg-lbl" x="14" y="410">Sustainability &amp; ESG</text>
+                <text class="svg-lbl-mute" x="14" y="426">scope-1/2/3, supplier metrics, audits</text>
+              </g>
+
+              <!-- Right column -->
+              <rect x="290" y="40" width="250" height="392" fill="rgba(122,154,127,.10)" stroke="rgba(122,154,127,.5)"/>
+              <text class="svg-cap" x="304" y="64" fill="#7A9A7F">EVERY CANDIDATE</text>
+              <text class="svg-h" x="304" y="92">Same architecture.</text>
+              <text class="svg-h" x="304" y="112">Same evidence chain.</text>
+              <text class="svg-h" x="304" y="132">Same governance.</text>
+
+              <line x1="304" y1="148" x2="528" y2="148" stroke="rgba(245,244,241,.10)"/>
+
+              <text class="svg-lbl-mute" x="304" y="172">Resolved into</text>
+              <text class="svg-lbl" x="304" y="190">One record per entity</text>
+
+              <text class="svg-lbl-mute" x="304" y="218">Evidence kept</text>
+              <text class="svg-lbl" x="304" y="236">Cited to source</text>
+
+              <text class="svg-lbl-mute" x="304" y="264">Approval routing</text>
+              <text class="svg-lbl" x="304" y="282">Your team, your thresholds</text>
+
+              <text class="svg-lbl-mute" x="304" y="310">Tenancy</text>
+              <text class="svg-lbl" x="304" y="328">Single, isolated, yours</text>
+
+              <line x1="304" y1="346" x2="528" y2="346" stroke="rgba(245,244,241,.10)"/>
+              <text class="svg-cap" x="304" y="372" fill="#7A9A7F">START WHERE IT HURTS MOST</text>
+              <text class="svg-lbl-mute" x="304" y="394">We'll do the first record alongside you.</text>
+              <text class="svg-lbl-mute" x="304" y="412">By the third, the records connect.</text>
+
+              <text class="svg-cap" x="0" y="468">Not exhaustive · examples drawn from customer conversations</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- RUNNING TEMPO -->
+      <div class="records-talk" id="tempo">
+        <h4>The operating layer at work.</h4>
+        <div class="sub">A live snapshot of records moving through AGYL — across customers, contracts, suppliers, equipment, product data</div>
+        <svg viewBox="0 0 1080 460" role="img" aria-label="The AGYL operating layer at work, live snapshot">
+          <defs>
+            <style>
+              .ow-h{font-family:'Inter',sans-serif;font-size:13px;font-weight:500;fill:#F5F4F1;letter-spacing:-.005em}
+              .ow-lbl{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;fill:#F5F4F1;letter-spacing:.02em}
+              .ow-mute{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:400;fill:rgba(245,244,241,.55);letter-spacing:.02em}
+              .ow-cap{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.18em;fill:rgba(245,244,241,.42);text-transform:uppercase}
+              .ow-good{fill:#7A9A7F}
+              .ow-warn{fill:#C9A875}
+              .ow-stream{stroke-dasharray:4 5;animation:owStream 3s linear infinite}
+              @keyframes owStream{to{stroke-dashoffset:-50}}
+              .ow-row{animation:owFade 6s ease-in-out infinite}
+              @keyframes owFade{0%,100%{opacity:.6}50%{opacity:1}}
+              .ow-bar-fill{animation:owBarPulse 4s ease-in-out infinite}
+              @keyframes owBarPulse{0%,100%{opacity:.65}50%{opacity:1}}
+            </style>
+          </defs>
+
+          <!-- COLUMN HEADERS -->
+          <text class="ow-cap" x="0" y="20">EVENT</text>
+          <text class="ow-cap" x="240" y="20">RECORD</text>
+          <text class="ow-cap" x="640" y="20">SOURCES RECONCILED</text>
+          <text class="ow-cap" x="960" y="20" text-anchor="end">STATUS</text>
+          <line x1="0" y1="32" x2="1080" y2="32" stroke="rgba(245,244,241,.10)"/>
+
+          <!-- ROW 1 — Customer deduped -->
+          <g class="ow-row" transform="translate(0, 56)">
+            <text class="ow-mute" x="0" y="6">14:02:11</text>
+            <text class="ow-lbl ow-good" x="0" y="22">Customer deduped</text>
+
+            <text class="ow-h" x="240" y="14">Halsey, Inc.</text>
+            <text class="ow-mute" x="240" y="30">three voices → one master</text>
+
+            <g transform="translate(640, 0)">
+              <rect x="0" y="2" width="60" height="22" fill="rgba(245,244,241,.06)" stroke="rgba(245,244,241,.18)"/>
+              <text class="ow-mute" x="30" y="17" text-anchor="middle">Salesforce</text>
+              <rect x="68" y="2" width="40" height="22" fill="rgba(245,244,241,.06)" stroke="rgba(245,244,241,.18)"/>
+              <text class="ow-mute" x="88" y="17" text-anchor="middle">Slack</text>
+              <rect x="116" y="2" width="50" height="22" fill="rgba(245,244,241,.06)" stroke="rgba(245,244,241,.18)"/>
+              <text class="ow-mute" x="141" y="17" text-anchor="middle">Notion</text>
+            </g>
+
+            <text class="ow-lbl ow-good" x="1080" y="18" text-anchor="end">RESOLVED · 0.96</text>
+          </g>
+
+          <line x1="0" y1="98" x2="1080" y2="98" stroke="rgba(245,244,241,.06)"/>
+
+          <!-- ROW 2 — Contract obligation surfaced -->
+          <g class="ow-row" transform="translate(0, 122)" style="animation-delay:.6s">
+            <text class="ow-mute" x="0" y="6">14:02:08</text>
+            <text class="ow-lbl ow-warn" x="0" y="22">Renewal flagged</text>
+
+            <text class="ow-h" x="240" y="14">MSA-2024-118</text>
+            <text class="ow-mute" x="240" y="30">¶ 12.1 · auto-renew 47d out</text>
+
+            <g transform="translate(640, 0)">
+              <rect x="0" y="2" width="60" height="22" fill="rgba(245,244,241,.06)" stroke="rgba(245,244,241,.18)"/>
+              <text class="ow-mute" x="30" y="17" text-anchor="middle">DocuSign</text>
+              <rect x="68" y="2" width="64" height="22" fill="rgba(245,244,241,.06)" stroke="rgba(245,244,241,.18)"/>
+              <text class="ow-mute" x="100" y="17" text-anchor="middle">SharePoint</text>
+              <rect x="140" y="2" width="50" height="22" fill="rgba(245,244,241,.06)" stroke="rgba(245,244,241,.18)"/>
+              <text class="ow-mute" x="165" y="17" text-anchor="middle">Gmail</text>
+            </g>
+
+            <text class="ow-lbl ow-warn" x="1080" y="18" text-anchor="end">ROUTED · CFO</text>
+          </g>
+
+          <line x1="0" y1="164" x2="1080" y2="164" stroke="rgba(245,244,241,.06)"/>
+
+          <!-- ROW 3 — Supplier merged -->
+          <g class="ow-row" transform="translate(0, 188)" style="animation-delay:1.2s">
+            <text class="ow-mute" x="0" y="6">14:02:02</text>
+            <text class="ow-lbl ow-good" x="0" y="22">Supplier merged</text>
+
+            <text class="ow-h" x="240" y="14">Eaton Bussmann Division</text>
+            <text class="ow-mute" x="240" y="30">six records → one parent · $458K visible</text>
+
+            <g transform="translate(640, 0)">
+              <rect x="0" y="2" width="40" height="22" fill="rgba(245,244,241,.06)" stroke="rgba(245,244,241,.18)"/>
+              <text class="ow-mute" x="20" y="17" text-anchor="middle">SAP</text>
+              <rect x="48" y="2" width="60" height="22" fill="rgba(245,244,241,.06)" stroke="rgba(245,244,241,.18)"/>
+              <text class="ow-mute" x="78" y="17" text-anchor="middle">Coupa</text>
+              <rect x="116" y="2" width="56" height="22" fill="rgba(245,244,241,.06)" stroke="rgba(245,244,241,.18)"/>
+              <text class="ow-mute" x="144" y="17" text-anchor="middle">D&amp;B reg.</text>
+            </g>
+
+            <text class="ow-lbl ow-good" x="1080" y="18" text-anchor="end">RESOLVED · 0.99</text>
+          </g>
+
+          <line x1="0" y1="230" x2="1080" y2="230" stroke="rgba(245,244,241,.06)"/>
+
+          <!-- ROW 4 — Capability resolved -->
+          <g class="ow-row" transform="translate(0, 254)" style="animation-delay:1.8s">
+            <text class="ow-mute" x="0" y="6">14:01:48</text>
+            <text class="ow-lbl ow-good" x="0" y="22">Capability resolved</text>
+
+            <text class="ow-h" x="240" y="14">M. Chen · L5 payments</text>
+            <text class="ow-mute" x="240" y="30">credentials, projects, peer attestation</text>
+
+            <g transform="translate(640, 0)">
+              <rect x="0" y="2" width="56" height="22" fill="rgba(245,244,241,.06)" stroke="rgba(245,244,241,.18)"/>
+              <text class="ow-mute" x="28" y="17" text-anchor="middle">Workday</text>
+              <rect x="64" y="2" width="48" height="22" fill="rgba(245,244,241,.06)" stroke="rgba(245,244,241,.18)"/>
+              <text class="ow-mute" x="88" y="17" text-anchor="middle">GitHub</text>
+              <rect x="120" y="2" width="50" height="22" fill="rgba(245,244,241,.06)" stroke="rgba(245,244,241,.18)"/>
+              <text class="ow-mute" x="145" y="17" text-anchor="middle">Linear</text>
+            </g>
+
+            <text class="ow-lbl ow-good" x="1080" y="18" text-anchor="end">RESOLVED · 0.94</text>
+          </g>
+
+          <line x1="0" y1="296" x2="1080" y2="296" stroke="rgba(245,244,241,.06)"/>
+
+          <!-- ROW 5 — Equipment asset reconciled -->
+          <g class="ow-row" transform="translate(0, 320)" style="animation-delay:2.4s">
+            <text class="ow-mute" x="0" y="6">14:01:33</text>
+            <text class="ow-lbl ow-warn" x="0" y="22">Awaiting approval</text>
+
+            <text class="ow-h" x="240" y="14">Asset #4581 · Carrier 30XA-1502B</text>
+            <text class="ow-mute" x="240" y="30">warranty active 14mo · OEM bulletin due</text>
+
+            <g transform="translate(640, 0)">
+              <rect x="0" y="2" width="60" height="22" fill="rgba(245,244,241,.06)" stroke="rgba(245,244,241,.18)"/>
+              <text class="ow-mute" x="30" y="17" text-anchor="middle">UpKeep</text>
+              <rect x="68" y="2" width="68" height="22" fill="rgba(245,244,241,.06)" stroke="rgba(245,244,241,.18)"/>
+              <text class="ow-mute" x="102" y="17" text-anchor="middle">ServiceNow</text>
+              <rect x="144" y="2" width="48" height="22" fill="rgba(245,244,241,.06)" stroke="rgba(245,244,241,.18)"/>
+              <text class="ow-mute" x="168" y="17" text-anchor="middle">OEM</text>
+            </g>
+
+            <text class="ow-lbl ow-warn" x="1080" y="18" text-anchor="end">ROUTED · OPS LEAD</text>
+          </g>
+
+          <line x1="0" y1="362" x2="1080" y2="362" stroke="rgba(245,244,241,.06)"/>
+
+          <!-- ROW 6 — Product field resolved -->
+          <g class="ow-row" transform="translate(0, 386)" style="animation-delay:3s">
+            <text class="ow-mute" x="0" y="6">14:01:09</text>
+            <text class="ow-lbl ow-good" x="0" y="22">Field resolved</text>
+
+            <text class="ow-h" x="240" y="14">Bussmann TCF15 · amperage</text>
+            <text class="ow-mute" x="240" y="30">5A → 15A · UL 248-4 cited · applied to 312 SKUs</text>
+
+            <g transform="translate(640, 0)">
+              <rect x="0" y="2" width="40" height="22" fill="rgba(245,244,241,.06)" stroke="rgba(245,244,241,.18)"/>
+              <text class="ow-mute" x="20" y="17" text-anchor="middle">PIM</text>
+              <rect x="48" y="2" width="40" height="22" fill="rgba(245,244,241,.06)" stroke="rgba(245,244,241,.18)"/>
+              <text class="ow-mute" x="68" y="17" text-anchor="middle">ERP</text>
+              <rect x="96" y="2" width="76" height="22" fill="rgba(245,244,241,.06)" stroke="rgba(245,244,241,.18)"/>
+              <text class="ow-mute" x="134" y="17" text-anchor="middle">datasheet PDF</text>
+            </g>
+
+            <text class="ow-lbl ow-good" x="1080" y="18" text-anchor="end">RESOLVED · 0.97 · EKOM</text>
+          </g>
+
+          <!-- bottom -->
+          <line x1="0" y1="440" x2="1080" y2="440" stroke="rgba(245,244,241,.06)"/>
+          <text class="ow-cap" x="0" y="455">Live · streaming across the operating layer · governed by your team</text>
+        </svg>
+      </div>
+
+      <!-- BRIDGE TO EKOM -->
+      <div class="ekom-bridge">
+        <div class="ekom-bridge-mark">The operating layer in production</div>
+        <p>The first application of the operating layer to be productized as a standalone, driven by demand from commerce teams. <b>EKOM is what the operating layer looks like when it ships as its own thing.</b></p>
+      </div>
+    </section>
+

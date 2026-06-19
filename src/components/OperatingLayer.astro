@@ -1,0 +1,259 @@
+---
+---
+    <section id="operating-layer">
+      <div class="section-mark single"><div>How the operating layer runs</div></div>
+      <h2>One continuous loop. <em>Determine. Evidence. Distribute.</em></h2>
+      <p class="lede">The architecture EKOM proved on product data, abstracted to any record a business has to get right. AGYL runs above your existing stack, replaces nothing in it, and turns the records that come out the other side into something an AI agent or copilot can act on without hallucinating.</p>
+
+      <div class="op-loop">
+        <div class="op-card">
+          <div class="step">01 · Determine</div>
+          <h4>Read every source. Decide each fact.</h4>
+          <p>Reconcile the systems that disagree. Resolve to the value the evidence supports, with confidence scored on every call.</p>
+        </div>
+        <div class="op-card">
+          <div class="step">02 · Evidence</div>
+          <h4>Carry the source behind every value.</h4>
+          <p>Every resolved value traces to where it came from. Below threshold, a person decides. That judgment enters the graph and is reapplied to the next record like it.</p>
+        </div>
+        <div class="op-card">
+          <div class="step">03 · Distribute</div>
+          <h4>Write the resolved record back.</h4>
+          <p>The resolved record returns to every system that reads it, in each endpoint's required shape. Endpoints change; AGYL repositions without rebuilding.</p>
+        </div>
+      </div>
+      <div class="loop-note">
+        <span>Runs continuously · under your governance</span>
+        <span>Model-agnostic by architecture</span>
+      </div>
+
+      <div class="context-graph">
+        <div class="context-head">
+          <span>CONTEXT GRAPH · YOUR BUSINESS, ENCODED ONCE</span>
+          <span class="live-pill">YOUR TENANT · YOUR IP</span>
+        </div>
+        <svg viewBox="0 0 1180 720" role="img" aria-label="The AGYL context graph and the swappable foundation model layer" preserveAspectRatio="xMidYMid meet">
+          <defs>
+            <linearGradient id="cgEdgeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#F5F4F1" stop-opacity=".5"/>
+              <stop offset="100%" stop-color="#F5F4F1" stop-opacity=".12"/>
+            </linearGradient>
+            <linearGradient id="cgOutGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#7A9A7F" stop-opacity=".6"/>
+              <stop offset="100%" stop-color="#7A9A7F" stop-opacity=".15"/>
+            </linearGradient>
+            <radialGradient id="cgTenantGlow" cx="50%" cy="50%" r="60%">
+              <stop offset="0%" stop-color="#F5F4F1" stop-opacity=".025"/>
+              <stop offset="100%" stop-color="#F5F4F1" stop-opacity="0"/>
+            </radialGradient>
+            <style>
+              .cg-cap{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.18em;fill:rgba(245,244,241,.45);text-transform:uppercase}
+              .cg-tier{font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:500;letter-spacing:.22em;fill:#F5F4F1;text-transform:uppercase}
+              .cg-tier-mute{font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:500;letter-spacing:.22em;fill:rgba(245,244,241,.55);text-transform:uppercase}
+              .cg-lbl{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;fill:#F5F4F1;letter-spacing:.04em}
+              .cg-lbl-mute{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:400;fill:rgba(245,244,241,.5);letter-spacing:.04em}
+              .cg-h{font-family:'Inter',sans-serif;font-size:14.5px;font-weight:500;fill:#F5F4F1;letter-spacing:-.005em}
+              .cg-stat{font-family:'Inter',sans-serif;font-size:26px;font-weight:300;fill:#F5F4F1;letter-spacing:-.025em}
+              .cg-stat-sub{font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;fill:rgba(245,244,241,.5);letter-spacing:.14em;text-transform:uppercase}
+              .cg-edge-pulse{animation:cgPulse 6s ease-in-out infinite}
+              @keyframes cgPulse{0%,100%{opacity:.45}50%{opacity:.85}}
+              .cg-swap{animation:cgSwap 4s ease-in-out infinite}
+              @keyframes cgSwap{0%,100%{opacity:.55}50%{opacity:1}}
+              .cg-out-stream{stroke-dasharray:3 5; animation:cgStream 2.6s linear infinite}
+              @keyframes cgStream{to{stroke-dashoffset:-40}}
+            </style>
+          </defs>
+
+          <!-- ============ TENANT FRAME ============ -->
+          <rect x="32" y="56" width="780" height="500" fill="url(#cgTenantGlow)" stroke="rgba(245,244,241,.22)" stroke-dasharray="6 5"/>
+          <text class="cg-cap" x="48" y="80" fill="rgba(245,244,241,.62)">YOUR TENANT · YOUR GOVERNANCE</text>
+
+          <!-- ============ TIER 1 - YOUR STACK ============ -->
+          <text class="cg-tier" x="64" y="124">Tier 01 · Your stack</text>
+          <line x1="64" y1="136" x2="784" y2="136" stroke="rgba(245,244,241,.08)"/>
+
+          <g>
+            <!-- 6 source nodes - simplified, fewer text labels -->
+            <rect x="64" y="156" width="108" height="48" fill="rgba(245,244,241,.05)" stroke="rgba(245,244,241,.25)"/>
+            <text class="cg-lbl" x="74" y="178">Salesforce</text>
+            <text class="cg-lbl-mute" x="74" y="194">customers</text>
+
+            <rect x="184" y="156" width="108" height="48" fill="rgba(245,244,241,.05)" stroke="rgba(245,244,241,.25)"/>
+            <text class="cg-lbl" x="194" y="178">SAP · ERP</text>
+            <text class="cg-lbl-mute" x="194" y="194">suppliers</text>
+
+            <rect x="304" y="156" width="108" height="48" fill="rgba(245,244,241,.05)" stroke="rgba(245,244,241,.25)"/>
+            <text class="cg-lbl" x="314" y="178">DocuSign</text>
+            <text class="cg-lbl-mute" x="314" y="194">contracts</text>
+
+            <rect x="424" y="156" width="108" height="48" fill="rgba(245,244,241,.05)" stroke="rgba(245,244,241,.25)"/>
+            <text class="cg-lbl" x="434" y="178">Slack · Notion</text>
+            <text class="cg-lbl-mute" x="434" y="194">decisions</text>
+
+            <rect x="544" y="156" width="108" height="48" fill="rgba(245,244,241,.05)" stroke="rgba(245,244,241,.25)"/>
+            <text class="cg-lbl" x="554" y="178">ServiceNow</text>
+            <text class="cg-lbl-mute" x="554" y="194">assets</text>
+
+            <rect x="664" y="156" width="108" height="48" fill="rgba(245,244,241,.05)" stroke="rgba(245,244,241,.25)"/>
+            <text class="cg-lbl" x="674" y="178">Workday</text>
+            <text class="cg-lbl-mute" x="674" y="194">people</text>
+          </g>
+
+          <!-- ============ TIER 2 - AUTHORITIES ============ -->
+          <text class="cg-tier-mute" x="64" y="252">Tier 02 · Authorities</text>
+          <line x1="64" y1="264" x2="784" y2="264" stroke="rgba(245,244,241,.08)"/>
+
+          <g>
+            <rect x="64" y="284" width="138" height="42" fill="rgba(245,244,241,.03)" stroke="rgba(245,244,241,.18)"/>
+            <text class="cg-lbl" x="74" y="304" fill="rgba(245,244,241,.78)">Your taxonomy</text>
+            <text class="cg-lbl-mute" x="74" y="318">how you classify</text>
+
+            <rect x="214" y="284" width="138" height="42" fill="rgba(245,244,241,.03)" stroke="rgba(245,244,241,.18)"/>
+            <text class="cg-lbl" x="224" y="304" fill="rgba(245,244,241,.78)">Approval rules</text>
+            <text class="cg-lbl-mute" x="224" y="318">thresholds, owners</text>
+
+            <rect x="364" y="284" width="138" height="42" fill="rgba(245,244,241,.03)" stroke="rgba(245,244,241,.18)"/>
+            <text class="cg-lbl" x="374" y="304" fill="rgba(245,244,241,.78)">D&amp;B · regulatory</text>
+            <text class="cg-lbl-mute" x="374" y="318">third-party</text>
+
+            <rect x="514" y="284" width="138" height="42" fill="rgba(245,244,241,.03)" stroke="rgba(245,244,241,.18)"/>
+            <text class="cg-lbl" x="524" y="304" fill="rgba(245,244,241,.78)">Industry standards</text>
+            <text class="cg-lbl-mute" x="524" y="318">UL · IEC · ISO</text>
+
+            <rect x="664" y="284" width="108" height="42" fill="rgba(245,244,241,.03)" stroke="rgba(245,244,241,.18)"/>
+            <text class="cg-lbl" x="674" y="304" fill="rgba(245,244,241,.78)">Endpoints</text>
+            <text class="cg-lbl-mute" x="674" y="318">retailer specs</text>
+          </g>
+
+          <!-- ============ TIER 3 - INFERENCE ============ -->
+          <text class="cg-tier-mute" x="64" y="376" fill="rgba(245,244,241,.42)">Tier 03 · Inference</text>
+          <line x1="64" y1="388" x2="784" y2="388" stroke="rgba(245,244,241,.08)"/>
+
+          <g>
+            <rect x="64" y="408" width="220" height="38" fill="rgba(245,244,241,.018)" stroke="rgba(245,244,241,.12)"/>
+            <text class="cg-lbl" x="74" y="426" fill="rgba(245,244,241,.62)">Document extraction</text>
+            <text class="cg-lbl-mute" x="74" y="440">PDFs · spec sheets · attachments</text>
+
+            <rect x="296" y="408" width="220" height="38" fill="rgba(245,244,241,.018)" stroke="rgba(245,244,241,.12)"/>
+            <text class="cg-lbl" x="306" y="426" fill="rgba(245,244,241,.62)">Vertical libraries</text>
+            <text class="cg-lbl-mute" x="306" y="440">commerce · others extending</text>
+
+            <rect x="528" y="408" width="244" height="38" fill="rgba(245,244,241,.018)" stroke="rgba(245,244,241,.12)"/>
+            <text class="cg-lbl" x="538" y="426" fill="rgba(245,244,241,.62)">Cross-record reasoning</text>
+            <text class="cg-lbl-mute" x="538" y="440">graph-aware inference</text>
+          </g>
+
+          <!-- ============ ELEGANT CURVED EDGES BETWEEN TIERS ============ -->
+          <g class="cg-edge-pulse" fill="none" stroke="url(#cgEdgeGrad)" stroke-width="1">
+            <!-- T1 → T2 main edges (each source flows into its main authority) -->
+            <path d="M 118 204 C 118 240 133 264 133 284"/>
+            <path d="M 238 204 C 238 240 283 264 283 284"/>
+            <path d="M 358 204 C 358 240 433 264 433 284"/>
+            <path d="M 478 204 C 478 240 583 264 583 284"/>
+            <path d="M 598 204 C 598 240 718 264 718 284"/>
+            <path d="M 718 204 C 718 240 433 264 433 284"/>
+
+            <!-- T1 → T2 cross edges (taxonomy and approval rules touch every source) -->
+            <path d="M 118 204 C 160 230 200 260 283 284" opacity=".7"/>
+            <path d="M 238 204 C 220 230 180 260 133 284" opacity=".7"/>
+            <path d="M 358 204 C 330 230 300 260 283 284" opacity=".7"/>
+            <path d="M 478 204 C 460 230 440 260 433 284" opacity=".7"/>
+            <path d="M 598 204 C 560 230 500 260 433 284" opacity=".7"/>
+            <path d="M 358 204 C 400 230 480 260 583 284" opacity=".5"/>
+            <path d="M 478 204 C 520 230 580 260 718 284" opacity=".5"/>
+
+            <!-- T2 → T3 -->
+            <path d="M 133 326 C 133 360 174 380 174 408"/>
+            <path d="M 283 326 C 283 360 406 380 406 408"/>
+            <path d="M 433 326 C 433 360 406 380 406 408"/>
+            <path d="M 583 326 C 583 360 650 380 650 408"/>
+            <path d="M 718 326 C 718 360 650 380 650 408"/>
+          </g>
+
+          <!-- ============ COUNTER ROW INSIDE TENANT ============ -->
+          <line x1="48" y1="476" x2="796" y2="476" stroke="rgba(245,244,241,.12)"/>
+
+          <text class="cg-stat-sub" x="64" y="498">Records resolved</text>
+          <text class="cg-stat" x="64" y="528">1,840</text>
+
+          <text class="cg-stat-sub" x="244" y="498">Approvals encoded</text>
+          <text class="cg-stat" x="244" y="528">872</text>
+
+          <text class="cg-stat-sub" x="424" y="498">Authorities cited</text>
+          <text class="cg-stat" x="424" y="528">11.4K</text>
+
+          <text class="cg-stat-sub" x="604" y="498">Cross-references</text>
+          <text class="cg-stat" x="604" y="528">3,260</text>
+
+          <text class="cg-cap" x="796" y="544" text-anchor="end" fill="rgba(245,244,241,.4)">Live · pattern from EKOM customers</text>
+
+          <!-- ============ RIGHT SIDE: RESOLVED RECORDS ============ -->
+          <text class="cg-tier" x="852" y="80">Resolved records</text>
+          <text class="cg-cap" x="852" y="98">Read by every system, agent, copilot</text>
+
+          <g>
+            <!-- 5 output cards - cleaner, more dimensional -->
+            <rect x="852" y="118" width="296" height="68" fill="rgba(122,154,127,.07)" stroke="rgba(122,154,127,.5)"/>
+            <text class="cg-h" x="868" y="142">Customer master</text>
+            <text class="cg-lbl-mute" x="868" y="160">CRM · sales · billing</text>
+            <text class="cg-lbl-mute" x="868" y="176" fill="rgba(122,154,127,.85)">confidence 0.96 · evidence cited</text>
+
+            <rect x="852" y="196" width="296" height="68" fill="rgba(122,154,127,.07)" stroke="rgba(122,154,127,.5)"/>
+            <text class="cg-h" x="868" y="220">Supplier master</text>
+            <text class="cg-lbl-mute" x="868" y="238">procurement · compliance · risk</text>
+            <text class="cg-lbl-mute" x="868" y="254" fill="rgba(122,154,127,.85)">6 records merged · 0.99</text>
+
+            <rect x="852" y="274" width="296" height="68" fill="rgba(122,154,127,.07)" stroke="rgba(122,154,127,.5)"/>
+            <text class="cg-h" x="868" y="298">Contract obligations</text>
+            <text class="cg-lbl-mute" x="868" y="316">renewals · MFN · audit rights</text>
+            <text class="cg-lbl-mute" x="868" y="332" fill="rgba(122,154,127,.85)">47 days to next auto-renew</text>
+
+            <rect x="852" y="352" width="296" height="68" fill="rgba(122,154,127,.07)" stroke="rgba(122,154,127,.5)"/>
+            <text class="cg-h" x="868" y="376">Equipment registry</text>
+            <text class="cg-lbl-mute" x="868" y="394">warranty · service · OEM bulletins</text>
+            <text class="cg-lbl-mute" x="868" y="410" fill="rgba(122,154,127,.85)">field app + dispatch live</text>
+
+            <rect x="852" y="430" width="296" height="68" fill="rgba(122,154,127,.07)" stroke="rgba(122,154,127,.5)"/>
+            <text class="cg-h" x="868" y="454">Product catalog</text>
+            <text class="cg-lbl-mute" x="868" y="472">EKOM · in production</text>
+            <text class="cg-lbl-mute" x="868" y="488" fill="rgba(122,154,127,.85)">500K records · 96% first-pass</text>
+          </g>
+
+          <!-- Streams from tenant out to records -->
+          <g stroke="url(#cgOutGrad)" stroke-width="1.2" fill="none">
+            <line x1="812" y1="152" x2="852" y2="152" class="cg-out-stream"/>
+            <line x1="812" y1="230" x2="852" y2="230" class="cg-out-stream" style="animation-delay:.3s"/>
+            <line x1="812" y1="308" x2="852" y2="308" class="cg-out-stream" style="animation-delay:.6s"/>
+            <line x1="812" y1="386" x2="852" y2="386" class="cg-out-stream" style="animation-delay:.9s"/>
+            <line x1="812" y1="464" x2="852" y2="464" class="cg-out-stream" style="animation-delay:1.2s"/>
+          </g>
+
+          <!-- ============ BOTTOM: MODEL SLOT ============ -->
+          <line x1="32" y1="600" x2="1148" y2="600" stroke="rgba(245,244,241,.14)"/>
+          <text class="cg-cap" x="48" y="624" fill="rgba(245,244,241,.5)">Rented · outside your tenant · supplies inference</text>
+          <text class="cg-cap" x="1148" y="624" text-anchor="end" fill="rgba(245,244,241,.5)">Swappable · no rewrites</text>
+
+          <g>
+            <rect x="408" y="648" width="364" height="50" fill="none" stroke="rgba(245,244,241,.28)" stroke-dasharray="4 4"/>
+            <text class="cg-tier-mute" x="424" y="678">Model slot</text>
+
+            <rect x="510" y="657" width="172" height="32" fill="rgba(245,244,241,.10)" stroke="rgba(245,244,241,.42)"/>
+            <text class="cg-lbl" x="596" y="678" text-anchor="middle">Claude 4 · current</text>
+
+            <g class="cg-swap" transform="translate(700, 665)">
+              <path d="M0 8 L24 8 M18 2 L24 8 L18 14" fill="none" stroke="#F5F4F1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M52 8 L28 8 M34 2 L28 8 L34 14" fill="none" stroke="#F5F4F1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity=".55"/>
+            </g>
+
+            <rect x="724" y="657" width="38" height="32" fill="none" stroke="rgba(245,244,241,.22)" stroke-dasharray="3 3"/>
+          </g>
+        </svg>
+        <div class="context-foot">
+          <div><b>Your tenant, your governance</b>The graph lives inside your tenant. Your records, your standards, your thresholds. AGYL acts inside those boundaries, never outside.</div>
+          <div><b>Per-tenant memory</b>Every approval enters your graph and is reapplied to the next record. The longer it runs, the more your operation runs itself on your terms.</div>
+          <div><b>One layer, every record</b>Customers, suppliers, contracts, equipment, product data. The same architecture, the same governance, applied across each domain.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPOUNDING ASSET / COMPANY BRAIN -->
