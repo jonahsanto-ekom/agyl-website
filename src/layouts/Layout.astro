@@ -11,7 +11,7 @@ const { title = "AGYL · The operating layer for AI-ready data" } = Astro.props;
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
+<style is:global>
   :root{
     --bg:#0A0A0A;
     --bg-2:#0F0F0F;
@@ -698,6 +698,7 @@ const { title = "AGYL · The operating layer for AI-ready data" } = Astro.props;
   }
 
   /* EKOM FLAGSHIP - visually distinct */
+  section.ekom-flagship{
     margin:0; padding:0;
     background:linear-gradient(180deg, var(--bg-2) 0%, var(--bg-3) 100%);
     border-top:1px solid var(--hair);
@@ -924,7 +925,6 @@ const { title = "AGYL · The operating layer for AI-ready data" } = Astro.props;
   // Find and animate the big stat (60%) and supporting stats
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (!reducedMotion) {
-    // The big 60% stat
     const bigStat = document.querySelector('.big-stat .bs-num');
     if (bigStat) {
       const original = bigStat.textContent.trim();
@@ -944,7 +944,6 @@ const { title = "AGYL · The operating layer for AI-ready data" } = Astro.props;
       bsObs.observe(bigStat);
     }
 
-    // The 3 supporting stats
     document.querySelectorAll('.why-stats .stat-n').forEach(el => {
       const original = el.textContent.trim();
       el.dataset.target = original;
@@ -965,11 +964,9 @@ const { title = "AGYL · The operating layer for AI-ready data" } = Astro.props;
       }
     });
 
-    // EKOM stats (2.1M, 500K, 96%, 1 week)
     document.querySelectorAll('.ekom-stat .n, .fs-stat .n').forEach(el => {
       const original = el.textContent.trim();
       el.dataset.target = original;
-      // Parse compound values like "2.1M" or "500K" or "96%" or "1 week"
       const m = original.match(/^(\d+\.?\d*)([A-Za-z%]*)\s*(.*)$/);
       if (m) {
         let num = parseFloat(m[1]);
