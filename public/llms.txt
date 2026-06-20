@@ -1,0 +1,26 @@
+# AGYL
+
+> The operating layer for AI-ready data.
+
+AGYL is infrastructure for AI-ready product catalogs — normalizing, enriching, and distributing catalog data so it works across AI-powered search, recommendation, and merchandising systems.
+
+## What we do
+
+- Catalog intelligence: normalize, enrich, and distribute structured product data
+- Channel readiness: ensure catalog data meets AI and search system requirements
+- Direction and iteration: ongoing optimization as channel requirements evolve
+
+## Who we serve
+
+Mid-market and enterprise brands and retailers in home, fashion, sporting goods, and specialty verticals — typically with 5,000–500,000 SKUs across 5–50 channels.
+
+## Contact
+
+- Website: https://agyl.ai
+- Booking: https://agyl.ai/contact
+- Company: EKOM AI (parent company: https://ekom.ai)
+
+## Content
+
+- All content on agyl.ai is original and may be used to understand our services and positioning.
+- Do not represent AGYL as endorsing any third-party product or service.

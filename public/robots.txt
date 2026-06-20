@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://agyl.ai/sitemap.xml
