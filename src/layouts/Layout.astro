@@ -1,7 +1,6 @@
 ---
-const { title = "AGYL · The operating layer for AI-ready data" } = Astro.props;
 ---
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -10,19 +9,23 @@ const { title = "AGYL · The operating layer for AI-ready data" } = Astro.props;
 <meta name="description" content="AGYL is the operating layer for AI-ready data. The layer above the foundation model where your records, standards, and judgments compound into an asset you own. Built for the AI bottleneck every serious business is now facing.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
 <style is:global>
   :root{
     --bg:#0A0A0A;
     --bg-2:#0F0F0F;
     --bg-3:#141414;
+    --bg-lift:#161616;
+    --bg-lift-2:#1A1A1A;
     --ink:#F5F4F1;
     --ink-2:rgba(245,244,241,.92);
-    --mute:rgba(245,244,241,.62);
-    --faint:rgba(245,244,241,.42);
-    --dim:rgba(245,244,241,.24);
+    --mute:rgba(245,244,241,.74);
+    --mute-2:rgba(245,244,241,.62);
+    --faint:rgba(245,244,241,.58);
+    --dim:rgba(245,244,241,.32);
     --hair:rgba(245,244,241,.10);
     --hair-2:rgba(245,244,241,.05);
+    --hair-lift:rgba(245,244,241,.14);
     --live:#D4D2C5;
     --warn:#C9A875;
     --green:#7A9A7F;
@@ -39,7 +42,6 @@ const { title = "AGYL · The operating layer for AI-ready data" } = Astro.props;
     text-rendering:optimizeLegibility;font-feature-settings:"ss01","cv11";overflow-x:hidden;
     position:relative;
   }
-  /* atmospheric depth — radial warm under hero, very subtle */
   body::before{
     content:""; position:fixed; inset:0; pointer-events:none; z-index:-1;
     background:
@@ -47,7 +49,6 @@ const { title = "AGYL · The operating layer for AI-ready data" } = Astro.props;
       radial-gradient(120% 80% at 100% 100%, rgba(122,154,127,.025) 0%, transparent 55%),
       radial-gradient(100% 80% at 0% 100%, rgba(201,168,117,.025) 0%, transparent 55%);
   }
-  /* fine grain noise via repeating pattern */
   body::after{
     content:""; position:fixed; inset:0; pointer-events:none; z-index:-1;
     opacity:.4;
@@ -72,8 +73,28 @@ const { title = "AGYL · The operating layer for AI-ready data" } = Astro.props;
     padding:18px 64px; max-width:1380px; margin:0 auto;
   }
   .brand{
-    font-weight:600; font-size:18px; letter-spacing:-.01em;
     text-decoration:none; display:flex; align-items:center; gap:14px;
+    color:var(--ink);
+  }
+  .brand-lockup{
+    display:inline-flex; align-items:center; gap:12px;
+    line-height:1;
+  }
+  .brand-mark{
+    height:26px; width:auto; display:block;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .brand-wordmark{
+    font-family:'Jost', 'Inter', sans-serif;
+    font-weight:300;
+    font-size:23px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--ink);
+    line-height:1;
+    display:inline-block;
+    margin-right:-.18em;
   }
   .brand .live-dot{
     width:7px; height:7px; border-radius:50%; background:var(--live);
@@ -127,7 +148,6 @@ const { title = "AGYL · The operating layer for AI-ready data" } = Astro.props;
   .hero-copy p b{ color:var(--ink); font-weight:500; }
   .hero-cta-row{ display:flex; gap:14px; margin-top:36px; }
 
-  /* hero live visual */
   .hero-vis{
     background:var(--bg-2);
     border:1px solid var(--hair);
@@ -138,7 +158,7 @@ const { title = "AGYL · The operating layer for AI-ready data" } = Astro.props;
     display:flex; justify-content:space-between; align-items:center;
     padding-bottom:14px; margin-bottom:14px;
     border-bottom:1px solid var(--hair);
-    font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+    font-family:var(--mono); font-size:11.5px; letter-spacing:.18em;
     color:var(--faint); text-transform:uppercase;
   }
   .hero-vis .vh .live{
@@ -170,7 +190,7 @@ const { title = "AGYL · The operating layer for AI-ready data" } = Astro.props;
   }
   .hero-foot div{
     background:var(--bg); padding:24px 28px;
-    font-family:var(--mono); font-size:10.5px; letter-spacing:.16em;
+    font-family:var(--mono); font-size:12px; letter-spacing:.16em;
     color:var(--faint); text-transform:uppercase;
     display:flex; flex-direction:column; gap:10px;
   }
@@ -183,7 +203,7 @@ const { title = "AGYL · The operating layer for AI-ready data" } = Astro.props;
   section{ padding:140px 0; position:relative; border-top:1px solid var(--hair); }
   .section-mark{
     display:grid; grid-template-columns:auto 1fr; gap:28px;
-    font-family:var(--mono); font-size:11px; letter-spacing:.16em;
+    font-family:var(--mono); font-size:11.5px; letter-spacing:.16em;
     color:var(--faint); text-transform:uppercase; margin-bottom:56px;
   }
   .section-mark.single{
@@ -207,7 +227,6 @@ const { title = "AGYL · The operating layer for AI-ready data" } = Astro.props;
   p.body{ font-size:17px; line-height:1.7; color:var(--mute); max-width:62ch; margin:0 0 20px; }
   p.body b{ color:var(--ink); font-weight:500; }
 
-  /* WHAT AGYL IS — three plain answers */
   .three-q{
     display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
     background:var(--hair); margin-top:64px;
@@ -219,11 +238,159 @@ const { title = "AGYL · The operating layer for AI-ready data" } = Astro.props;
   .q .q-ans{ font-size:16.5px; line-height:1.6; color:var(--mute); margin:0; }
   .q .q-ans b{ color:var(--ink); font-weight:500; }
 
-  /* premise */
   .premise{ padding:200px 0; }
   .premise h2{ font-size:clamp(48px,6vw,88px); max-width:20ch; }
 
-  /* WHY NOW STATS */
+  .dictionary{
+    padding:140px 0 120px;
+    border-top:1px solid var(--hair); border-bottom:1px solid var(--hair);
+    position:relative;
+  }
+  .dict-inner{
+    max-width:780px; margin:0 auto;
+  }
+  .dict-mark{
+    font-family:var(--mono); font-size:11px; letter-spacing:.22em;
+    color:var(--faint); text-transform:uppercase;
+    text-align:center; margin-bottom:48px;
+    display:flex; align-items:center; justify-content:center; gap:14px;
+  }
+  .dict-mark::before, .dict-mark::after{
+    content:""; height:1px; flex:1; max-width:100px;
+    background:var(--hair);
+  }
+  .dict-entry{
+    font-family:'Times New Roman', 'Garamond', Georgia, serif;
+    color:var(--ink);
+  }
+  .dict-headline{
+    display:flex; align-items:baseline; gap:24px; flex-wrap:wrap;
+    padding-bottom:24px; margin-bottom:32px;
+    border-bottom:1px solid var(--hair-2);
+  }
+  .dict-word{
+    font-family:'Times New Roman', 'Garamond', Georgia, serif;
+    font-size:clamp(56px, 7vw, 88px); font-weight:400;
+    letter-spacing:-.02em; line-height:1; color:var(--ink);
+    font-style:italic;
+    display:inline-flex; align-items:baseline; gap:18px;
+  }
+  .dict-spell{
+    font-style:normal; letter-spacing:0;
+    font-family:var(--font); font-weight:300;
+  }
+  .dict-pron-inline{
+    font-style:italic;
+    color:var(--ink-2);
+    font-size:.7em;
+  }
+  .dict-pron{
+    font-family:var(--mono); font-size:clamp(17px, 1.6vw, 20px);
+    color:var(--mute); letter-spacing:.02em; line-height:1.2;
+  }
+  .dict-pos{
+    font-family:'Times New Roman', 'Garamond', Georgia, serif;
+    font-style:italic; font-size:17px; color:var(--mute);
+    margin-left:auto;
+  }
+  .dict-senses{
+    display:flex; flex-direction:column; gap:24px;
+    margin-bottom:36px;
+  }
+  .dict-sense{
+    display:grid; grid-template-columns:32px 1fr; gap:18px;
+    align-items:baseline;
+  }
+  .dict-sense-num{
+    font-family:'Times New Roman', 'Garamond', Georgia, serif;
+    font-size:18px; font-weight:500; color:var(--ink);
+    text-align:right; padding-top:2px;
+  }
+  .dict-sense-body{
+    font-family:'Times New Roman', 'Garamond', Georgia, serif;
+    font-size:19px; line-height:1.55; color:var(--ink);
+  }
+  .dict-sense-body em{
+    font-style:italic; color:var(--mute);
+  }
+  @media (max-width:600px){
+    .dict-headline{ gap:14px; }
+    .dict-word{ font-size:48px; }
+    .dict-pos{ margin-left:0; }
+    .dict-sense{ grid-template-columns:24px 1fr; gap:12px; }
+    .dict-sense-body{ font-size:17px; }
+  }
+
+  .lifted{
+    background:var(--bg-lift);
+    border-top:1px solid var(--hair-lift);
+    border-bottom:1px solid var(--hair-lift);
+    position:relative;
+  }
+  .lifted::before{
+    content:""; position:absolute; inset:0; pointer-events:none;
+    background:linear-gradient(180deg, rgba(245,244,241,.012) 0%, transparent 30%, transparent 70%, rgba(245,244,241,.008) 100%);
+    z-index:0;
+  }
+  .lifted > *{ position:relative; z-index:1; }
+
+  .audience{
+    padding:140px 0 160px;
+  }
+  .audience h2{
+    font-size:clamp(48px,5.6vw,80px); max-width:18ch;
+  }
+  .audience .lede{ max-width:54ch; }
+  .audience-grid{
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:1px;
+    background:var(--hair-lift);
+    border:1px solid var(--hair-lift);
+    margin-top:80px;
+  }
+  .aud-card{
+    background:var(--bg-lift); padding:48px 40px 52px;
+    display:flex; flex-direction:column; gap:0;
+    transition:background .3s;
+  }
+  .aud-card:hover{ background:var(--bg-lift-2); }
+  .aud-mark{
+    font-family:var(--mono); font-size:11.5px; font-weight:500;
+    letter-spacing:.18em; color:var(--faint); text-transform:uppercase;
+    margin-bottom:32px;
+    display:flex; align-items:center; gap:14px;
+  }
+  .aud-mark .aud-num{ color:var(--ink); font-weight:500; }
+  .aud-mark::after{
+    content:""; height:1px; flex:1;
+    background:var(--hair-lift);
+  }
+  .aud-h{
+    font-family:var(--font); font-weight:500; font-size:24px;
+    letter-spacing:-.015em; line-height:1.2;
+    margin:0 0 16px; color:var(--ink);
+  }
+  .aud-h em{ font-style:normal; color:var(--mute); }
+  .aud-card p{
+    font-size:16px; line-height:1.6; color:var(--mute);
+    margin:0 0 20px;
+  }
+  .aud-card p b{ color:var(--ink); font-weight:500; }
+  .aud-meta{
+    margin-top:auto; padding-top:24px;
+    border-top:1px solid var(--hair-lift);
+    font-family:var(--mono); font-size:12.5px; letter-spacing:.14em;
+    color:var(--faint); text-transform:uppercase;
+    line-height:1.7;
+  }
+  .aud-meta b{
+    display:block; color:var(--ink); font-family:var(--font);
+    font-weight:500; font-size:15px; letter-spacing:-.005em;
+    text-transform:none; margin-bottom:4px;
+  }
+  @media (max-width:1000px){
+    .audience-grid{ grid-template-columns:1fr; }
+  }
+
   .why-stats{
     display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
     background:var(--hair); margin-top:48px;
@@ -240,14 +407,13 @@ const { title = "AGYL · The operating layer for AI-ready data" } = Astro.props;
   }
   .stat .stat-src{
     display:block; margin-top:12px;
-    font-family:var(--mono); font-size:10px; letter-spacing:.16em;
+    font-family:var(--mono); font-size:11.5px; letter-spacing:.16em;
     color:var(--faint); text-transform:uppercase;
   }
   @media (max-width:1000px){
     .why-stats{ grid-template-columns:1fr; }
   }
 
-  /* outcomes */
   .outcomes{
     display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
     background:var(--hair); margin-top:80px;
@@ -256,7 +422,7 @@ const { title = "AGYL · The operating layer for AI-ready data" } = Astro.props;
   .outcome{ background:var(--bg); padding:48px 40px; }
   .outcome .ico{ font-family:var(--mono); font-size:11px; letter-spacing:.16em; color:var(--faint); margin-bottom:36px; }
   .outcome h4{ font-weight:400; font-size:30px; letter-spacing:-.02em; line-height:1.1; margin:0 0 18px; max-width:14ch; }
-  .outcome p{ font-size:15px; line-height:1.6; color:var(--mute); margin:0; }
+  .outcome p{ font-size:16px; line-height:1.6; color:var(--mute); margin:0; }
 
   .op-loop{
     display:grid; grid-template-columns:repeat(3, 1fr); gap:1px;
@@ -302,7 +468,6 @@ const { title = "AGYL · The operating layer for AI-ready data" } = Astro.props;
     font-size:14px; letter-spacing:0; text-transform:none; margin-bottom:6px;
   }
 
-  /* use case tabs */
   .uc-intro{
     display:grid; grid-template-columns:1.2fr 1fr; gap:64px;
     margin-top:48px; align-items:start;
@@ -364,7 +529,7 @@ const { title = "AGYL · The operating layer for AI-ready data" } = Astro.props;
     display:flex; flex-direction:column;
   }
   .uc-visual .uc-vh{
-    font-family:var(--mono); font-size:10.5px; letter-spacing:.18em;
+    font-family:var(--mono); font-size:11px; letter-spacing:.18em;
     color:var(--faint); text-transform:uppercase;
     padding-bottom:20px; border-bottom:1px solid var(--hair); margin-bottom:24px;
     display:flex; justify-content:space-between; align-items:center;
@@ -376,7 +541,6 @@ const { title = "AGYL · The operating layer for AI-ready data" } = Astro.props;
   }
   .uc-visual svg{ width:100%; height:auto; display:block; flex:1; }
 
-  /* records-talk diagram */
   .records-talk{
     margin-top:96px; padding:48px 56px;
     background:var(--bg-2); border:1px solid var(--hair);
@@ -385,7 +549,6 @@ const { title = "AGYL · The operating layer for AI-ready data" } = Astro.props;
   .records-talk .sub{ font-family:var(--mono); font-size:11px; letter-spacing:.18em; color:var(--faint); text-transform:uppercase; margin-bottom:32px; }
   .records-talk svg{ width:100%; height:auto; display:block; }
 
-  /* EKOM */
   .ekom-block{
     display:grid; grid-template-columns:1fr 1fr; gap:80px;
     margin-top:56px; align-items:start;
@@ -402,7 +565,7 @@ const { title = "AGYL · The operating layer for AI-ready data" } = Astro.props;
   }
   .ekom-stat{ background:var(--bg); padding:32px 28px; }
   .ekom-stat .n{ font-size:clamp(32px,3.2vw,42px); font-weight:300; letter-spacing:-.025em; line-height:1; }
-  .ekom-stat .c{ font-size:12.5px; line-height:1.5; color:var(--mute); margin-top:14px; font-family:var(--mono); letter-spacing:.02em; }
+  .ekom-stat .c{ font-size:13.5px; line-height:1.5; color:var(--mute); margin-top:14px; font-family:var(--mono); letter-spacing:.02em; }
   .ekom-quote{ font-size:20px; line-height:1.5; letter-spacing:-.01em; color:var(--ink-2); font-weight:300; }
   .ekom-quote-attr{
     margin-top:20px; padding-top:18px; border-top:1px solid var(--hair);
@@ -410,14 +573,13 @@ const { title = "AGYL · The operating layer for AI-ready data" } = Astro.props;
     color:var(--faint); text-transform:uppercase;
   }
 
-  /* principles */
   .principles{ margin-top:48px; display:grid; grid-template-columns:1fr 1fr; }
   .principle{ padding:40px 48px 40px 0; border-top:1px solid var(--hair); min-height:160px; display:flex; flex-direction:column; }
   .principle:nth-child(even){ padding-left:48px; padding-right:0; border-left:1px solid var(--hair); }
   .principle:nth-last-child(-n+2){ border-bottom:1px solid var(--hair); }
   .principle .n{ font-family:var(--mono); font-size:11px; letter-spacing:.18em; color:var(--faint); margin-bottom:14px; }
   .principle h5{ font-weight:500; font-size:22px; letter-spacing:-.015em; line-height:1.2; margin:0 0 12px; }
-  .principle p{ font-size:15px; line-height:1.6; color:var(--mute); margin:0; max-width:48ch; }
+  .principle p{ font-size:16px; line-height:1.6; color:var(--mute); margin:0; max-width:48ch; }
 
   .close{ padding:200px 0 220px; }
   .close h2{ font-size:clamp(48px,6vw,96px); max-width:18ch; line-height:1.0; }
@@ -435,14 +597,17 @@ const { title = "AGYL · The operating layer for AI-ready data" } = Astro.props;
   .foot-final{
     grid-column:1 / -1; padding-top:32px; margin-top:48px;
     border-top:1px solid var(--hair-2);
-    display:flex; justify-content:space-between;
-    font-family:var(--mono); font-size:11px; letter-spacing:.1em; color:var(--faint);
+    display:flex; justify-content:space-between; align-items:center; gap:32px;
+    font-family:var(--mono); font-size:13px; letter-spacing:.1em; color:var(--faint);
+  }
+  .foot-final .foot-sec{ color:var(--mute); letter-spacing:.12em; }
+  @media (max-width:800px){
+    .foot-final{ flex-direction:column; align-items:flex-start; gap:14px; }
   }
 
   .reveal{ opacity:0; transform:translateY(20px); transition:opacity .9s ease, transform .9s ease; }
   .reveal.in{ opacity:1; transform:none; }
 
-  /* WHAT YOU GET — three pillars */
   .pillars{
     display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
     background:var(--hair); margin-top:64px;
@@ -458,7 +623,7 @@ const { title = "AGYL · The operating layer for AI-ready data" } = Astro.props;
     margin:0 0 20px; max-width:14ch;
   }
   .pillar h4 em{ font-style:normal; color:var(--mute); }
-  .pillar p{ font-size:15.5px; line-height:1.65; color:var(--mute); margin:0 0 14px; max-width:36ch; }
+  .pillar p{ font-size:16px; line-height:1.65; color:var(--mute); margin:0 0 14px; max-width:36ch; }
   .pillar p b{ color:var(--ink); font-weight:500; }
   .pillar .p-list{
     margin-top:24px; padding-top:20px; border-top:1px solid var(--hair-2);
@@ -494,7 +659,6 @@ const { title = "AGYL · The operating layer for AI-ready data" } = Astro.props;
   }
   .ownership-band .ob-body b{ color:var(--ink); font-weight:500; }
 
-  /* POSITIONING CALLOUT - one-line stake in the ground */
   .position-callout{
     margin:0 0 0; padding:48px 0;
     border-top:1px solid var(--hair); border-bottom:1px solid var(--hair);
@@ -518,7 +682,6 @@ const { title = "AGYL · The operating layer for AI-ready data" } = Astro.props;
     padding-left:20px; padding-right:20px;
   }
 
-  /* SINGLE BIG STAT - viewport-dominating moment */
   .big-stat{
     padding:140px 0 80px;
     text-align:center; position:relative; overflow:hidden;
@@ -551,7 +714,6 @@ const { title = "AGYL · The operating layer for AI-ready data" } = Astro.props;
     color:var(--faint); text-transform:uppercase;
   }
 
-  /* COMPANY TEXTURE */
   .company-section{ padding:140px 0; border-top:1px solid var(--hair); position:relative; }
   .company-grid{
     display:grid; grid-template-columns:1fr 1fr; gap:96px; margin-top:48px;
@@ -582,16 +744,68 @@ const { title = "AGYL · The operating layer for AI-ready data" } = Astro.props;
   .company-grid .col-r .meta-row .value .v-sub{
     display:block; font-size:13.5px; color:var(--mute); margin-top:4px;
   }
+
+  .company-grid .col-r .sec-row{
+    display:grid; grid-template-columns:auto 1fr; gap:24px; align-items:start;
+  }
+  .company-grid .col-r .sec-row .label{
+    font-family:var(--mono); font-size:11px; letter-spacing:.16em;
+    color:var(--faint); text-transform:uppercase;
+    padding-top:3px; min-width:140px;
+  }
+  .sec-strip{
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:1px;
+    background:var(--hair);
+    border:1px solid var(--hair);
+  }
+  .sec-cell{
+    background:var(--bg); padding:18px 18px;
+    display:flex; flex-direction:column; gap:6px;
+  }
+  .sec-cell .sec-mark{
+    font-family:var(--mono); font-size:13px; font-weight:500;
+    letter-spacing:.10em; color:var(--ink); text-transform:uppercase;
+    display:flex; align-items:center; gap:8px;
+  }
+  .sec-cell .sec-mark::before{
+    content:""; width:6px; height:6px; border-radius:50%;
+    background:var(--live); flex-shrink:0;
+  }
+  .sec-cell .sec-sub{
+    font-family:var(--mono); font-size:11.5px; letter-spacing:.14em;
+    color:var(--faint); text-transform:uppercase;
+  }
+  .sec-strip-note{
+    margin-top:10px;
+    font-family:var(--mono); font-size:11.5px; letter-spacing:.14em;
+    color:var(--faint); text-transform:uppercase;
+  }
+  @media (max-width:600px){
+    .sec-strip{ grid-template-columns:1fr; }
+  }
   @media (max-width:1000px){
     .company-grid{ grid-template-columns:1fr; gap:48px; }
     .company-grid .col-r{ border-left:none; padding-left:0; border-top:1px solid var(--hair); padding-top:32px; }
   }
 
-  /* EKOM BRIDGE - transition to flagship band */
   .ekom-bridge{
     margin-top:96px; padding:64px 0 32px;
     text-align:center;
     border-top:1px solid var(--hair);
+  }
+
+  .arch-preview{
+    margin-top:80px; padding:48px 0 8px;
+    text-align:center;
+    border-top:1px solid var(--hair);
+  }
+  .arch-preview p{
+    font-size:clamp(20px, 2.2vw, 28px); font-weight:300;
+    letter-spacing:-.015em; line-height:1.35; color:var(--ink-2);
+    max-width:46ch; margin:0 auto;
+  }
+  .arch-preview p em{
+    font-style:normal; color:var(--ink); font-weight:400;
   }
   .ekom-bridge-mark{
     font-family:var(--mono); font-size:11px; letter-spacing:.18em;
@@ -604,7 +818,6 @@ const { title = "AGYL · The operating layer for AI-ready data" } = Astro.props;
   }
   .ekom-bridge p b{ color:var(--ink); font-weight:500; }
 
-  /* COMPOUNDING ASSET - the company brain section */
   .compounding{
     padding:160px 0 140px;
     border-top:1px solid var(--hair);
@@ -634,11 +847,11 @@ const { title = "AGYL · The operating layer for AI-ready data" } = Astro.props;
   .compounding .cmp-left .cmp-quote{
     margin-top:32px; padding:24px 0 0;
     border-top:1px solid var(--hair);
-    font-size:15px; line-height:1.55; color:var(--mute);
+    font-size:16px; line-height:1.6; color:var(--mute);
     max-width:48ch;
   }
   .compounding .cmp-left .cmp-quote b{
-    display:block; font-family:var(--mono); font-size:11px;
+    display:block; font-family:var(--mono); font-size:11.5px;
     letter-spacing:.16em; color:var(--faint); text-transform:uppercase;
     margin-bottom:10px;
   }
@@ -648,7 +861,7 @@ const { title = "AGYL · The operating layer for AI-ready data" } = Astro.props;
   }
   .compounding .cmp-vh{
     display:flex; justify-content:space-between; align-items:center;
-    font-family:var(--mono); font-size:10.5px; letter-spacing:.16em;
+    font-family:var(--mono); font-size:11px; letter-spacing:.16em;
     color:var(--faint); text-transform:uppercase; margin-bottom:24px;
     padding-bottom:16px; border-bottom:1px solid var(--hair-2);
   }
@@ -658,7 +871,61 @@ const { title = "AGYL · The operating layer for AI-ready data" } = Astro.props;
     .compounding .cmp-grid{ grid-template-columns:1fr; gap:64px; }
   }
 
-  /* HORIZON — the altitude moment */
+  .connected-brains{
+    margin-top:96px; padding-top:80px;
+    border-top:1px solid var(--hair);
+  }
+  .cb-intro{
+    text-align:center; max-width:60ch; margin:0 auto 56px;
+  }
+  .cb-mark{
+    font-family:var(--mono); font-size:11px; letter-spacing:.22em;
+    color:var(--faint); text-transform:uppercase; margin-bottom:24px;
+  }
+  .cb-headline{
+    font-family:var(--font); font-weight:300;
+    font-size:clamp(34px,4.2vw,52px); letter-spacing:-.025em;
+    line-height:1.1; margin:0 0 24px; color:var(--ink);
+  }
+  .cb-headline em{ font-style:normal; color:var(--mute); }
+  .cb-lede{
+    font-size:17px; line-height:1.55; color:var(--ink-2);
+    margin:0 auto; max-width:54ch;
+  }
+  .cb-lede b{ color:var(--ink); font-weight:500; }
+  .cb-visual{
+    border:1px solid var(--hair); background:var(--bg-2);
+    padding:32px 28px 28px;
+    margin-top:32px;
+  }
+  .cb-vh{
+    display:flex; justify-content:space-between; align-items:center;
+    font-family:var(--mono); font-size:11px; letter-spacing:.16em;
+    color:var(--faint); text-transform:uppercase; margin-bottom:24px;
+    padding-bottom:16px; border-bottom:1px solid var(--hair-2);
+  }
+  .cb-vh .live{ color:var(--live); }
+  .cb-visual svg{ width:100%; height:auto; display:block; }
+  .cb-foot{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
+    background:var(--hair); margin-top:32px;
+    border:1px solid var(--hair);
+  }
+  .cb-foot div{
+    background:var(--bg); padding:20px 24px;
+    font-family:var(--mono); font-size:11px; letter-spacing:.16em;
+    color:var(--faint); text-transform:uppercase;
+    line-height:1.6;
+  }
+  .cb-foot div b{
+    display:block; color:var(--ink); font-family:var(--font);
+    font-weight:500; font-size:15px; letter-spacing:-.005em;
+    text-transform:none; margin-bottom:6px;
+  }
+  @media (max-width:800px){
+    .cb-foot{ grid-template-columns:1fr; }
+  }
+
   .horizon{
     padding:200px 0 180px; border-top:1px solid var(--hair);
     position:relative; overflow:hidden;
@@ -697,8 +964,7 @@ const { title = "AGYL · The operating layer for AI-ready data" } = Astro.props;
     .horizon{ padding:120px 0; }
   }
 
-  /* EKOM FLAGSHIP - visually distinct */
-  section.ekom-flagship{
+  .ekom-flagship{
     margin:0; padding:0;
     background:linear-gradient(180deg, var(--bg-2) 0%, var(--bg-3) 100%);
     border-top:1px solid var(--hair);
@@ -757,7 +1023,7 @@ const { title = "AGYL · The operating layer for AI-ready data" } = Astro.props;
   }
   .ekom-flagship .fs-stat{ background:var(--bg-2); padding:32px 28px; }
   .ekom-flagship .fs-stat .n{ font-size:clamp(32px,3.2vw,42px); font-weight:300; letter-spacing:-.025em; line-height:1; }
-  .ekom-flagship .fs-stat .c{ font-size:12.5px; line-height:1.5; color:var(--mute); margin-top:14px; font-family:var(--mono); letter-spacing:.02em; }
+  .ekom-flagship .fs-stat .c{ font-size:13.5px; line-height:1.5; color:var(--mute); margin-top:14px; font-family:var(--mono); letter-spacing:.02em; }
   .ekom-flagship .flagship-quote{
     margin-top:32px; padding:32px 36px;
     background:var(--bg); border:1px solid var(--hair);
@@ -800,12 +1066,11 @@ const { title = "AGYL · The operating layer for AI-ready data" } = Astro.props;
   }
 
   .svg-lbl{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;fill:#F5F4F1;letter-spacing:.02em}
-  .svg-lbl-mute{font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:400;fill:rgba(245,244,241,.55);letter-spacing:.02em}
-  .svg-cap{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.18em;fill:rgba(245,244,241,.42);text-transform:uppercase}
+  .svg-lbl-mute{font-family:'JetBrains Mono',monospace;font-size:11.5px;font-weight:400;fill:rgba(245,244,241,.55);letter-spacing:.02em}
+  .svg-cap{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;letter-spacing:.18em;fill:rgba(245,244,241,.42);text-transform:uppercase}
   .svg-h{font-family:'Inter',sans-serif;font-size:14px;font-weight:500;fill:#F5F4F1;letter-spacing:-.005em}
   .svg-num{font-family:'Inter',sans-serif;font-size:22px;font-weight:400;fill:#F5F4F1;letter-spacing:-.02em}
 
-  /* hero ambient streaming */
   .stream{ stroke-dasharray:5 7; animation:streamflow 3.4s linear infinite; }
   @keyframes streamflow{ to{ stroke-dashoffset:-72; } }
 
@@ -837,7 +1102,6 @@ const { title = "AGYL · The operating layer for AI-ready data" } = Astro.props;
     .hero-foot{ grid-template-columns:1fr; gap:1px; }
     .uc-visual{ padding:24px 20px; min-height:auto; }
   }
-  /* MOTION: card hover lift on pillars/principles/use cases/outcomes */
   .pillar, .principle, .outcome, .uc-nav button{
     transition: border-color .35s ease, transform .35s ease, background-color .35s ease;
   }
@@ -849,7 +1113,6 @@ const { title = "AGYL · The operating layer for AI-ready data" } = Astro.props;
   .principle:hover{ background:rgba(245,244,241,.015); }
   .uc-nav button:hover{ border-color: rgba(245,244,241,.28); }
 
-  /* MOTION: hero progress bar slow pulse loop */
   .hp-bar-loop{
     transform-origin:left center;
     animation:hpBarLoop 4.5s ease-in-out infinite;
@@ -860,7 +1123,6 @@ const { title = "AGYL · The operating layer for AI-ready data" } = Astro.props;
     100%{ opacity:.55; transform:scaleX(.18); }
   }
 
-  /* MOTION: activity feed row pulse-highlight */
   .ow-row{
     animation:owFade 6s ease-in-out infinite;
   }
@@ -869,7 +1131,6 @@ const { title = "AGYL · The operating layer for AI-ready data" } = Astro.props;
     10%,30%{ fill-opacity:.04; }
   }
 
-  /* MOTION: count-up stat reveal */
   .count-up{ opacity:0; transition:opacity .4s ease; }
   .count-up.in{ opacity:1; }
 
@@ -879,7 +1140,6 @@ const { title = "AGYL · The operating layer for AI-ready data" } = Astro.props;
     .count-up{ opacity:1; }
   }
 </style>
-
 </head>
 <body>
   <slot />
@@ -902,7 +1162,6 @@ const { title = "AGYL · The operating layer for AI-ready data" } = Astro.props;
     });
   });
 
-  // Count-up animation for statistics
   const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
   function animateCountUp(el, target, prefix, suffix, duration) {
     const start = performance.now();
@@ -922,7 +1181,6 @@ const { title = "AGYL · The operating layer for AI-ready data" } = Astro.props;
     requestAnimationFrame(tick);
   }
 
-  // Find and animate the big stat (60%) and supporting stats
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (!reducedMotion) {
     const bigStat = document.querySelector('.big-stat .bs-num');
@@ -988,6 +1246,5 @@ const { title = "AGYL · The operating layer for AI-ready data" } = Astro.props;
     });
   }
 </script>
-
 </body>
 </html>
