@@ -31,8 +31,8 @@ import Layout from '../layouts/Layout.astro';
         <div class="contact-booking">
           <div class="booking-label">Schedule a conversation</div>
           <div id="roam-lobby" style="min-width:320px;"></div>
-          <script type="text/javascript" src="https://ro.am/lobbylinks/embed.js"></script>
-          <script>
+          <script is:inline type="text/javascript" src="https://ro.am/lobbylinks/embed.js"></script>
+          <script is:inline>
             const parentElement = document.getElementById("roam-lobby");
             Roam.initLobbyEmbed({
               url: "https://ro.am/jonah-santo/meet-with-agyl",
