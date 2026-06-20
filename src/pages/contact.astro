@@ -1,0 +1,190 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout>
+  <nav class="top" style="position:fixed; top:0; left:0; right:0; z-index:100; display:flex; align-items:center; justify-content:space-between; padding:0 32px; height:56px; background:var(--bg); border-bottom:1px solid var(--hair);">
+    <a href="/" style="display:flex; align-items:center; gap:10px; text-decoration:none;">
+      <svg class="brand-mark" width="20" height="20" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 4L36 32H4L20 4Z" stroke="var(--ink)" stroke-width="2" fill="none"/>
+        <path d="M20 14L28 28H12L20 14Z" fill="var(--ink)" opacity="0.4"/>
+      </svg>
+      <span style="font-family:'Jost','Inter',sans-serif; font-weight:300; font-size:18px; letter-spacing:.18em; text-transform:uppercase; color:var(--ink);">AGYL</span>
+    </a>
+    <a href="/" style="font-size:13px; color:var(--mute); text-decoration:none; font-family:var(--mono); letter-spacing:.06em;">← agyl.ai</a>
+  </nav>
+
+  <div style="padding-top:56px; min-height:100vh; background:var(--bg);">
+    <div class="contact-wrap">
+
+      <!-- INTRO -->
+      <div class="contact-intro">
+        <div class="section-mark single"><div>See it on your data</div></div>
+        <h1>Pick a record.<br><em>Start there.</em></h1>
+        <p class="contact-lede">The brain you want to build cannot exist without this layer underneath. Pick the record domain most exposed to your AI roadmap and we will show you what is resolvable today, what your team is stalling on, and what the loop looks like once it is running.</p>
+        <p class="contact-lede">Documented against your own records, with the evidence behind every finding. <b>No pitch deck. No sales team. No commitment required.</b></p>
+      </div>
+
+      <!-- TWO-COLUMN: booking + steps -->
+      <div class="contact-grid">
+
+        <!-- LEFT: ROAM EMBED -->
+        <div class="contact-booking">
+          <div class="booking-label">Schedule a conversation</div>
+          <div id="roam-lobby" style="min-width:320px;"></div>
+          <script type="text/javascript" src="https://ro.am/lobbylinks/embed.js"></script>
+          <script>
+            const parentElement = document.getElementById("roam-lobby");
+            Roam.initLobbyEmbed({
+              url: "https://ro.am/jonah-santo/meet-with-agyl",
+              parentElement,
+              lobbyConfiguration: "booking_only",
+              accentColor: "#0059DC",
+              theme: "dark",
+              onSizeChange: (width, height) => {
+                parentElement.style.height = `${height}px`;
+              },
+            });
+          </script>
+        </div>
+
+        <!-- RIGHT: HOW IT WORKS -->
+        <div class="contact-steps">
+          <div class="booking-label">How it works</div>
+
+          <div class="contact-step">
+            <span class="step-num">01</span>
+            <div>
+              <div class="step-title">30 minutes, no pitch</div>
+              <p>You speak with the people who built AGYL. Your record domain, your current setup, where the AI roadmap is blocked. No deck. No script.</p>
+            </div>
+          </div>
+
+          <div class="contact-step">
+            <span class="step-num">02</span>
+            <div>
+              <div class="step-title">We look at the data</div>
+              <p>We profile a representative sample — a category, a domain, a set of records. The operating layer runs against them. Every finding documented against your actual data.</p>
+            </div>
+          </div>
+
+          <div class="contact-step">
+            <span class="step-num">03</span>
+            <div>
+              <div class="step-title">You get the findings</div>
+              <p>What is resolvable today. Where the loop stalls. What the compound record looks like once it runs. Everything evidenced. Nothing guessed.</p>
+            </div>
+          </div>
+
+          <div class="contact-note">
+            No commitment · no services engagement required
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style is:global>
+  .contact-wrap {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 80px 40px 120px;
+  }
+
+  .contact-intro {
+    max-width: 640px;
+    margin-bottom: 72px;
+  }
+
+  .contact-intro h1 {
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -.02em;
+    color: var(--ink);
+    margin: 16px 0 24px;
+  }
+
+  .contact-intro h1 em {
+    font-style: normal;
+    color: var(--mute);
+  }
+
+  .contact-lede {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--mute);
+    margin-bottom: 16px;
+  }
+
+  .contact-lede b {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .booking-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--faint);
+    margin-bottom: 28px;
+  }
+
+  .contact-steps {
+    padding-top: 4px;
+  }
+
+  .contact-step {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+
+  .step-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .12em;
+    color: var(--faint);
+    padding-top: 3px;
+    flex-shrink: 0;
+    width: 24px;
+  }
+
+  .step-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink);
+    letter-spacing: -.01em;
+    margin-bottom: 8px;
+  }
+
+  .contact-step p {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--mute);
+    margin: 0;
+  }
+
+  .contact-note {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .08em;
+    color: var(--faint);
+    padding-top: 8px;
+    border-top: 1px solid var(--hair);
+  }
+
+  @media (max-width: 768px) {
+    .contact-wrap { padding: 60px 24px 80px; }
+    .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+  }
+</style>
