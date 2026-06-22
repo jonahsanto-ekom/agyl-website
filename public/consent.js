@@ -18,7 +18,7 @@
 
   var NAME = 'agyl_consent';
   var GA_ID = 'G-HP9WD0TYLB';
-  var CLARITY_ID = '__CLARITY_ID__'; // Replace after Clarity project is created
+  var CLARITY_ID = 'xb4mkyp6nv';
 
   function getConsent() {
     var m = document.cookie.match(/(?:^|; )agyl_consent=([^;]*)/);
