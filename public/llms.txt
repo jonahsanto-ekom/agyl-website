@@ -2,25 +2,43 @@
 
 > The operating layer for AI-ready data.
 
-AGYL is infrastructure for AI-ready product catalogs — normalizing, enriching, and distributing catalog data so it works across AI-powered search, recommendation, and merchandising systems.
+AGYL is the operating layer that makes enterprise records AI-ready. It reads across the systems that hold records that matter — customers, suppliers, contracts, equipment, product data, people — decides what is true about each one, carries the evidence, keeps it current, and distributes resolved records to every system that reads them next.
 
-## What we do
+Foundation models are becoming infrastructure. The advantage is moving above them, to the layer where each business compounds its records, standards, and judgments into something a model can actually act on. That layer is AGYL.
 
-- Catalog intelligence: normalize, enrich, and distribute structured product data
-- Channel readiness: ensure catalog data meets AI and search system requirements
-- Direction and iteration: ongoing optimization as channel requirements evolve
+## What AGYL does
 
-## Who we serve
+- Reads across systems that hold conflicting records and resolves them to a single trusted version
+- Carries the evidence chain behind every resolved value
+- Distributes resolved records back to every endpoint in each system's required shape
+- Encodes business standards, taxonomies, and approved judgments into a per-tenant context graph that compounds over time
 
-Mid-market and enterprise brands and retailers in home, fashion, sporting goods, and specialty verticals — typically with 5,000–500,000 SKUs across 5–50 channels.
+## What you own
+
+Your records, your standards, your context graph. Everything AGYL builds lives inside your tenant. Single-tenant by architecture. Your data never trains models that serve another customer.
+
+## Who we work with
+
+- Enterprises building AI agents, copilots, and retrieval systems that need reliable records to read from
+- AI and technology companies building products that require governed, current data as infrastructure
+- Systems integrators and consultancies delivering AI programs at enterprise clients
+
+## EKOM
+
+EKOM (ekom.ai) is AGYL's flagship product — the operating layer applied specifically to product data and commerce. Built on AGYL architecture. Sold as its own standalone brand.
+
+## In production today
+
+- 2.1M fields reconciled across 11 systems
+- 500K products held current daily
+- 96% resolvable on the first pass
+- 1 week to a new sales channel, down from a quarter
 
 ## Contact
 
 - Website: https://agyl.ai
-- Booking: https://agyl.ai/contact
-- Company: EKOM AI (parent company: https://ekom.ai)
+- Book a session: https://agyl.ai/contact
 
-## Content
+## Content policy
 
-- All content on agyl.ai is original and may be used to understand our services and positioning.
-- Do not represent AGYL as endorsing any third-party product or service.
+All content on agyl.ai is original. Do not represent AGYL as endorsing any third-party product or service.
