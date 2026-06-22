@@ -1,28 +1,112 @@
 ---
 ---
-  <nav class="top">
-    <div class="navrow">
-      <a href="#" class="brand">
-        <span class="brand-lockup">
-          <svg class="brand-mark" viewBox="0 0 100 114" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <!-- Outer triangle - the A's pyramid silhouette -->
-            <path d="M50 4 L96 110 L4 110 Z" fill="currentColor"/>
-            <!-- Inner negative triangle - upper interior void -->
-            <path d="M50 36 L68 72 L32 72 Z" fill="#0A0A0A"/>
-            <!-- Inner negative trapezoid base - lower interior void with rounded corners -->
-            <path d="M28 82 L72 82 Q75 82 75 85 L75 102 Q75 105 72 105 L28 105 Q25 105 25 102 L25 85 Q25 82 28 82 Z" fill="#0A0A0A"/>
-          </svg>
-          <span class="brand-wordmark">AGYL</span>
-        </span>
-      </a>
-      <div class="navlinks">
-        <a href="#what">What it is</a>
-        <a href="#operating-layer">Operating Layer</a>
-        <a href="#use-cases">Use Cases</a>
-        <a href="#what-you-get">What you get</a>
-        <a href="#audience">Who we work with</a>
-        <a href="#company">Company</a>
-      </div>
-      <a href="#close" class="navcta">See it on your data</a>
+<nav class="top">
+  <div class="navrow">
+    <a href="#" class="brand">
+      <span class="brand-lockup">
+        <svg class="brand-mark" viewBox="0 0 100 114" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <!-- Outer triangle - the A's pyramid silhouette -->
+          <path d="M50 4 L96 110 L4 110 Z" fill="currentColor"/>
+          <!-- Inner negative triangle - upper interior void -->
+          <path d="M50 36 L68 72 L32 72 Z" fill="#0A0A0A"/>
+          <!-- Inner negative trapezoid base - lower interior void with rounded corners -->
+          <path d="M28 82 L72 82 Q75 82 75 85 L75 102 Q75 105 72 105 L28 105 Q25 105 25 102 L25 85 Q25 82 28 82 Z" fill="#0A0A0A"/>
+        </svg>
+        <span class="brand-wordmark">AGYL</span>
+      </span>
+    </a>
+    <div class="navlinks" id="nav-links">
+      <a href="#what">What it is</a>
+      <a href="#operating-layer">Operating Layer</a>
+      <a href="#use-cases">Use Cases</a>
+      <a href="#what-you-get">What you get</a>
+      <a href="#audience">Who we work with</a>
+      <a href="#company">Company</a>
     </div>
-  </nav>
+    <div class="nav-right">
+      <a href="#close" class="navcta">See it on your data</a>
+      <button class="nav-burger" id="nav-burger" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+<style>
+  .nav-right { display: flex; align-items: center; gap: 16px; }
+  .nav-burger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    color: var(--ink);
+  }
+  .nav-burger span {
+    display: block;
+    width: 22px;
+    height: 1.5px;
+    background: currentColor;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+  .nav-burger[aria-expanded="true"] span:nth-child(1) {
+    transform: translateY(6.5px) rotate(45deg);
+  }
+  .nav-burger[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+  }
+  .nav-burger[aria-expanded="true"] span:nth-child(3) {
+    transform: translateY(-6.5px) rotate(-45deg);
+  }
+  @media (max-width: 1000px) {
+    .nav-burger { display: flex; }
+    .navcta { display: none; }
+    #nav-links {
+      display: none;
+      position: fixed;
+      top: 65px;
+      left: 0;
+      right: 0;
+      background: rgba(10, 10, 10, 0.97);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--hair);
+      flex-direction: column;
+      padding: 24px 22px;
+      gap: 0;
+      z-index: 49;
+    }
+    #nav-links.open {
+      display: flex;
+    }
+    #nav-links a {
+      padding: 16px 0;
+      border-bottom: 1px solid var(--hair-2);
+      font-size: 16px;
+      color: var(--mute);
+      text-decoration: none;
+    }
+    #nav-links a:last-child {
+      border-bottom: none;
+    }
+  }
+</style>
+<script is:inline>
+  (function() {
+    var burger = document.getElementById('nav-burger');
+    var links = document.getElementById('nav-links');
+    if (!burger || !links) return;
+    burger.addEventListener('click', function() {
+      var open = links.classList.toggle('open');
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    links.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        links.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+      });
+    });
+  })();
+</script>
