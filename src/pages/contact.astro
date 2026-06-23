@@ -52,6 +52,7 @@ import Layout from '../layouts/Layout.astro';
               document.head.appendChild(s);
             })();
           </script>
+          <div class="contact-note">Or reach out directly · <a href="mailto:info@agyl.ai" class="contact-note-link">info@agyl.ai</a></div>
         </div>
 
         <!-- RIGHT: HOW IT WORKS -->
@@ -188,6 +189,15 @@ import Layout from '../layouts/Layout.astro';
     color: var(--faint);
     padding-top: 8px;
     border-top: 1px solid var(--hair);
+  }
+
+  .contact-note-link {
+    color: var(--faint);
+    text-decoration: none;
+  }
+
+  .contact-note-link:hover {
+    color: var(--mute);
   }
 
   @media (max-width: 768px) {
