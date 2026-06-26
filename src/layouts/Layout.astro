@@ -1,51 +1,16 @@
 ---
-import '@fontsource/inter/300.css';
-import '@fontsource/inter/400.css';
-import '@fontsource/inter/500.css';
-import '@fontsource/inter/600.css';
-import '@fontsource/inter/700.css';
-import '@fontsource/jetbrains-mono/400.css';
-import '@fontsource/jetbrains-mono/500.css';
-import '@fontsource/jost/200.css';
-import '@fontsource/jost/300.css';
-import '@fontsource/jost/400.css';
-import '@fontsource/jost/500.css';
 ---
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script src="/consent.js" defer></script>
-<!-- OpenSend Pixel -->
-<script type='text/javascript'>!function(e){e._oirtrk=e._oirtrk||[];e._oirtrk.push(['set','site',window.location.hostname])}(window);</script>
-<script type="text/javascript">!(function(s){let o=s.createElement('script'),u=s.getElementsByTagName('script')[0];o.src='https://cdn.aggle.net/oir/oir.min.js';o.async=!0,o.setAttribute('oirtyp','6311ae17'),o.setAttribute('oirid','P4MC46L22');u.parentNode.insertBefore(o,u)})(document);</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AGYL · The operating layer for AI-ready data</title>
-<meta name="description" content="Your AI is only as smart as the records it reads from. AGYL resolves conflicting enterprise records so agents and copilots act on truth.">
+<title>AGYL AI · The operating layer for AI-ready data</title>
+<meta name="description" content="Your systems weren’t built to share what they know. AGYL builds the AI layer that connects them and turns fragmented data into something you can actually act on.">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<!-- Canonical -->
-<link rel="canonical" href="https://agyl.ai/">
-<!-- Open Graph -->
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://agyl.ai/">
-<meta property="og:site_name" content="AGYL">
-<meta property="og:title" content="AGYL · The operating layer for AI-ready data">
-<meta property="og:description" content="Your AI is only as smart as the records it reads from. AGYL resolves conflicting enterprise records so agents and copilots act on truth.">
-<meta property="og:image" content="https://agyl.ai/og.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="AGYL — The operating layer for AI-ready data">
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="AGYL · The operating layer for AI-ready data">
-<meta name="twitter:description" content="Your AI is only as smart as the records it reads from. AGYL resolves conflicting enterprise records so agents and copilots act on truth.">
-<meta name="twitter:image" content="https://agyl.ai/og.png">
-<!-- Structured data -->
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"AGYL","url":"https://agyl.ai","description":"The operating layer for AI-ready data.","logo":"https://agyl.ai/favicon.svg","contactPoint":{"@type":"ContactPoint","url":"https://agyl.ai/contact","contactType":"sales"}}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is AGYL a product, or a service?","acceptedAnswer":{"@type":"Answer","text":"AGYL is software you run, inside your tenant. Your team operates it. Onboarding is included and finite. After that, the platform runs continuously, on your terms. No ongoing services billing."}},{"@type":"Question","name":"Who owns the intelligence?","acceptedAnswer":{"@type":"Answer","text":"You do, by architecture. Your records, standards, and approved decisions stay inside your tenant and never train models that serve another customer. If you leave, the layer leaves with you."}},{"@type":"Question","name":"Why does this matter now?","acceptedAnswer":{"@type":"Answer","text":"Every AI initiative inside your business is now bottlenecked at the same layer. Foundation models keep getting more capable. The advantage is moving above them, to where your records, standards, and judgments live."}}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"AGYL","url":"https://agyl.ai","description":"The operating layer for AI-ready data. Reads across systems that hold conflicting records, resolves them to a single trusted version, and distributes them to every system that reads them next.","applicationCategory":"BusinessApplication","operatingSystem":"Cloud","offers":{"@type":"Offer","url":"https://agyl.ai/contact"}}</script>
-<!-- Cloudflare Web Analytics -->
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"f57405243eef4e0bb5fbe27fa12dbaca"}'></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
 <style is:global>
   :root{
     --bg:#0A0A0A;
@@ -1257,13 +1222,13 @@ import '@fontsource/jost/500.css';
     if (bigStat) {
       const original = bigStat.textContent.trim();
       bigStat.dataset.target = original;
+      bigStat.textContent = '0%';
       const bsObs = new IntersectionObserver((entries, obs) => {
         entries.forEach(e => {
           if (e.isIntersecting) {
             const txt = e.target.dataset.target;
             const num = parseFloat(txt);
             const suffix = txt.replace(/[\d.]/g, '');
-            e.target.textContent = '0' + suffix;
             animateCountUp(e.target, num, '', suffix, 1400);
             obs.unobserve(e.target);
           }
@@ -1280,10 +1245,10 @@ import '@fontsource/jost/500.css';
       if (!isNaN(num)) {
         const prefix = original.match(/^[^\d]*/)[0];
         const suffix = original.replace(/^[^\d]*[\d.]+/, '');
+        el.textContent = prefix + '0' + suffix;
         const obs = new IntersectionObserver((entries, observer) => {
           entries.forEach(e => {
             if (e.isIntersecting) {
-              e.target.textContent = prefix + '0' + suffix;
               animateCountUp(e.target, num, prefix, suffix, 1300);
               observer.unobserve(e.target);
             }
@@ -1305,10 +1270,10 @@ import '@fontsource/jost/500.css';
         const rest = m[3];
         if (unit === 'M') num = num * 1000000;
         else if (unit === 'K') num = num * 1000;
+        el.textContent = '0' + (unit || '') + (rest ? ' ' + rest : '');
         const obs = new IntersectionObserver((entries, observer) => {
           entries.forEach(e => {
             if (e.isIntersecting) {
-              e.target.textContent = '0' + (unit || '') + (rest ? ' ' + rest : '');
               animateCountUp(e.target, num, '', (unit === 'M' || unit === 'K') ? '' : unit + (rest ? ' ' + rest : ''), 1500);
               observer.unobserve(e.target);
             }
