@@ -1172,6 +1172,28 @@
     .count-up{ opacity:1; }
   }
 </style>
+<script is:inline>
+(function () {
+  // internal-device flag (parity with the retired Opensend middleware)
+  try {
+    var qs = new URLSearchParams(location.search);
+    if (qs.get('agyl-internal') === '1') localStorage.setItem('agyl_internal', '1');
+    if (qs.get('agyl-internal') === '0') localStorage.removeItem('agyl_internal');
+  } catch (e) {}
+  try { if (localStorage.getItem('agyl_internal') === '1') return; } catch (e) {}
+  // Apollo company-level visitor tracking (mirrors ekom.ai; not consent-gated)
+  var n = Math.random().toString(36).substring(7),
+      o = document.createElement('script');
+  o.src = 'https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache=' + n;
+  o.async = true; o.defer = true;
+  o.onload = function () {
+    if (window.trackingFunctions && window.trackingFunctions.onLoad) {
+      window.trackingFunctions.onLoad({ appId: '67c0e4acb24ed0001d82a4fa' });
+    }
+  };
+  document.head.appendChild(o);
+})();
+</script>
 <script is:inline src="/consent.js"></script>
 </head>
 <body>
