@@ -1,7 +1,9 @@
 /* AGYL first-party cookie consent — no third-party tool.
-   Stores choice in agyl_consent cookie (365d). GA4 (G-HP9WD0TYLB) and
-   Microsoft Clarity load ONLY after "Accept all". window.gtag is always
-   stubbed so page calls queue safely either way.
+   Stores choice in agyl_consent cookie (365d). GA4 (G-HP9WD0TYLB),
+   Microsoft Clarity, and the LinkedIn Insight Tag (partner 9648988) load ONLY
+   after "Accept all". window.gtag is always stubbed so page calls queue safely
+   either way. LinkedIn is consent-gated to mirror ekom.ai and because the
+   Insight Tag sets advertising cookies.
    Internal device flag: agyl.ai/?agyl-internal=1 disables all analytics on this browser. */
 (function () {
   // Internal-traffic device flag
@@ -19,6 +21,7 @@
   var NAME = 'agyl_consent';
   var GA_ID = 'G-HP9WD0TYLB';
   var CLARITY_ID = 'xb4mkyp6nv';
+  var LI_PARTNER_ID = '9648988'; // AGYL LinkedIn Campaign Manager 548962434 (separate from EKOM)
 
   function getConsent() {
     var m = document.cookie.match(/(?:^|; )agyl_consent=([^;]*)/);
@@ -63,10 +66,25 @@
     })(window, document, 'clarity', 'script', CLARITY_ID);
   }
 
+  // LinkedIn Insight Tag — consent-gated (mirrors ekom.ai; sets advertising cookies).
+  function loadLinkedIn() {
+    if (window.__agylLiLoaded) return;
+    window.__agylLiLoaded = true;
+    window._linkedin_partner_id = LI_PARTNER_ID;
+    window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+    window._linkedin_data_partner_ids.push(LI_PARTNER_ID);
+    var s = document.createElement('script');
+    s.type = 'text/javascript';
+    s.async = true;
+    s.src = 'https://snap.licdn.com/li.lms-analytics/insight.min.js';
+    document.head.appendChild(s);
+  }
+
   function loadOnConsent() {
     if (isInternal()) return;
     loadGA();
     loadClarity();
+    loadLinkedIn();
   }
 
   var STYLES = '#agyl-consent{position:fixed;left:0;right:0;bottom:0;z-index:9999;background:#1a2e2b;color:#fff;font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;box-shadow:0 -4px 24px rgba(0,0,0,.18)}#agyl-consent .akc-inner{max-width:1080px;margin:0 auto;padding:18px 24px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}#agyl-consent p{margin:0;flex:1 1 380px;font-size:13.5px;line-height:1.55;color:rgba(255,255,255,.85);letter-spacing:-.005em}#agyl-consent a{color:#fff;text-decoration:underline;text-underline-offset:2px}#agyl-consent .akc-actions{display:flex;gap:10px;flex:0 0 auto}#agyl-consent button{font-family:inherit;font-size:13.5px;font-weight:600;letter-spacing:-.005em;border-radius:6px;padding:10px 18px;cursor:pointer;transition:opacity .15s ease}#agyl-consent .akc-accept{background:#4A7C6F;color:#fff;border:1px solid #4A7C6F}#agyl-consent .akc-accept:hover{opacity:.88}#agyl-consent .akc-essential{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.4)}#agyl-consent .akc-essential:hover{border-color:#fff}@media(max-width:560px){#agyl-consent .akc-inner{padding:16px}#agyl-consent .akc-actions{width:100%}#agyl-consent button{flex:1}}';
