@@ -7,6 +7,7 @@ This file records product and operating decisions that affect the public website
 - **Scope:** This repository covers the public AGYL marketing website. The client experience lives at a separate destination and is linked from the marketing site.
 - **Company relationship:** AGYL is the parent company and the operator named in AGYL website policies. EKOM is an AGYL product, not the operator of AGYL.
 - **Apollo:** Company-level Apollo identification loads before optional cookie consent. It must be disclosed plainly, disabled for internal devices, and suppressed when Global Privacy Control is enabled.
+  - *Risk accepted (for now):* Loading Apollo before consent is defensible under U.S. state privacy law (GPC honored), but does not meet EU/UK ePrivacy "consent-first" rules for non-essential trackers. GPC is a U.S. opt-out signal, not an EU consent mechanism. This is an accepted business-interest tradeoff for the current phase. Planned mitigation when EU/UK traffic matters: geo-gate Apollo so it does not load for EU/UK visitors until consent is given.
 - **Optional analytics:** GA4, Microsoft Clarity, and LinkedIn load only after “Accept all.”
 - **Roam:** The scheduling experience remains embedded on `/contact`. Its third-party processing must be disclosed.
 - **Fonts:** Website fonts are bundled through Fontsource and served from the AGYL origin so the Cloudflare content-security policy can remain self-hosted.

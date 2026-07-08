@@ -1,4 +1,5 @@
-Contact: mailto:hello@agyl.ai
+Contact: mailto:info@agyl.ai
 Expires: 2027-06-22T00:00:00.000Z
 Preferred-Languages: en
 Canonical: https://agyl.ai/.well-known/security.txt
+Policy: https://agyl.ai/security

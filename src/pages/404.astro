@@ -1,0 +1,42 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout
+  title="Page not found · AGYL"
+  description="The page you requested could not be found."
+  canonicalPath="/404"
+  noindex={true}
+>
+  <main class="nf-shell">
+    <div class="nf-inner">
+      <div class="nf-mark">Error 404</div>
+      <h1>This page isn’t here.</h1>
+      <p>The page you requested doesn’t exist or has moved. Everything AGYL still starts from one place.</p>
+      <div class="nf-actions">
+        <a href="/" class="btn btn-primary">Back to agyl.ai <span class="arr">→</span></a>
+        <a href="/contact" class="btn btn-ghost">Contact <span class="arr">→</span></a>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .nf-shell{
+    min-height:100vh; display:flex; align-items:center; justify-content:center;
+    padding:96px 32px; background:var(--bg);
+  }
+  .nf-inner{ max-width:560px; text-align:center; }
+  .nf-mark{
+    font:11px var(--mono); letter-spacing:.18em; text-transform:uppercase;
+    color:var(--faint); margin-bottom:24px;
+  }
+  .nf-inner h1{
+    font-size:clamp(36px,6vw,64px); font-weight:300; letter-spacing:-.03em;
+    line-height:1.05; margin:0 0 20px; color:var(--ink);
+  }
+  .nf-inner p{
+    font-size:17px; line-height:1.65; color:var(--mute);
+    max-width:42ch; margin:0 auto 40px;
+  }
+  .nf-actions{ display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+</style>
