@@ -7,9 +7,18 @@
 
 **Operator:** AGYL AI, Inc. (d.b.a. Ekom AI), Delaware corp. EKOM is a product of AGYL.
 **Scope:** Two static public marketing sites (agyl.ai, ekom.ai). The client/product
-experience lives elsewhere. All policy text below is an operational draft pending sign-off.
-**Ask of counsel:** Confirm each item is accurate and adequately disclosed, or redline.
-Flag anything needing a new mechanism (e.g. a "Do Not Sell or Share" link) or a
+experience lives elsewhere.
+
+## Status — legal/privacy lane
+
+**Operator approval:** Jonah Santo, July 8, 2026 — accepted the disclosures as-is for launch,
+with additional verification deferred to post-deploy.
+**Outside counsel:** has **not** reviewed these documents. This is operator sign-off, not a
+legal opinion; nothing here should be treated as legal advice. The checklist below is retained
+as the scope for a future counsel review — it is **not** a record of counsel approval.
+
+**For a future counsel review:** confirm each item is accurate and adequately disclosed, or
+redline. Flag anything needing a new mechanism (e.g. a "Do Not Sell or Share" link) or a
 subprocessor/DPA reference.
 
 ## Applies to BOTH sites
