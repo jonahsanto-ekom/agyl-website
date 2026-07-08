@@ -15,7 +15,7 @@ Foundation models are becoming infrastructure. The advantage is moving above the
 
 ## What you own
 
-Your records, your standards, your context graph. Everything AGYL builds lives inside your tenant. Single-tenant by architecture. Your data never trains models that serve another customer.
+Your records, your standards, your context graph. Everything AGYL builds lives inside your tenant. Isolated per customer by architecture. Your data never trains models that serve another customer.
 
 ## Who we work with
 
