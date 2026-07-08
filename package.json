@@ -4,8 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview"
+    "build": "ASTRO_TELEMETRY_DISABLED=1 astro build",
+    "preview": "astro preview",
+    "check:site": "node scripts/check-site.mjs",
+    "test": "npm run build && npm run check:site"
   },
   "dependencies": {
     "@fontsource/inter": "^5.1.1",

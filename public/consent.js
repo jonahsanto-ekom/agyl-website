@@ -4,6 +4,9 @@
    after "Accept all". window.gtag is always stubbed so page calls queue safely
    either way. LinkedIn is consent-gated to mirror ekom.ai and because the
    Insight Tag sets advertising cookies.
+   Apollo performs company-level visitor identification before consent as an
+   approved business-interest exception. It is suppressed for internal devices
+   and browsers that send a Global Privacy Control opt-out signal.
    Internal device flag: agyl.ai/?agyl-internal=1 disables all analytics on this browser. */
 (function () {
   // Internal-traffic device flag
@@ -80,6 +83,31 @@
     document.head.appendChild(s);
   }
 
+  function gpcOptOut() {
+    try { return navigator.globalPrivacyControl === true; } catch (e) { return false; }
+  }
+
+  // Approved pre-consent exception: company-level identification only.
+  function loadApollo() {
+    if (window.__agylApolloLoaded || isInternal() || gpcOptOut()) return;
+    window.__agylApolloLoaded = true;
+    try {
+      var nonce = Math.random().toString(36).substring(7);
+      var s = document.createElement('script');
+      s.src = 'https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache=' + nonce;
+      s.async = true;
+      s.defer = true;
+      s.onload = function () {
+        try {
+          if (window.trackingFunctions && window.trackingFunctions.onLoad) {
+            window.trackingFunctions.onLoad({ appId: '67c0e4acb24ed0001d82a4fa' });
+          }
+        } catch (e) {}
+      };
+      document.head.appendChild(s);
+    } catch (e) {}
+  }
+
   function loadOnConsent() {
     if (isInternal()) return;
     loadGA();
@@ -108,7 +136,7 @@
     div.setAttribute('aria-label', 'Cookie consent');
     div.innerHTML =
       '<div class="akc-inner">' +
-      '<p>AGYL uses analytics cookies to understand how visitors use the site. Essential functionality never depends on them. See our <a href="/privacy">privacy policy</a>.</p>' +
+      '<p>AGYL uses optional analytics cookies after you accept them. We also use Apollo for company-level visitor identification before consent, except when Global Privacy Control is enabled. See our <a href="/privacy">privacy policy</a>.</p>' +
       '<div class="akc-actions">' +
       '<button class="akc-essential" type="button">Essential only</button>' +
       '<button class="akc-accept" type="button">Accept all</button>' +
@@ -128,6 +156,7 @@
   window.agylShowConsent = function () { showBanner(); };
 
   function init() {
+    loadApollo();
     var c = getConsent();
     if (c === 'all') { loadOnConsent(); return; }
     if (c === 'essential') return;
