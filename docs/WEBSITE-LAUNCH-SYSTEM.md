@@ -1,102 +1,175 @@
 # Website Launch System — reusable starter spec
 
-> **Status & scope (2026-07-09):** This is a *reference specification* distilled from the
-> verified AGYL + EKOM launches. It is **not** a separate repository or template yet, and one
-> must **not** be created until Jonah explicitly names and authorizes a new website project.
-> Until then this blueprint lives in the AGYL repo (the governance home) and is what Codex and
-> Claude Code collaborate on. When authorized, the future starter implements this spec.
+> **Status & scope (2026-07-09):** A *reference specification* distilled from the verified
+> AGYL + EKOM launches. It is **not** a separate repository or template yet, and one must **not**
+> be created until Jonah explicitly names and authorizes a new website project. Until then this
+> blueprint lives in the AGYL repo (governance home) and is what Codex and Claude Code
+> collaborate on. When authorized, the future starter implements this spec.
 >
-> **Reference implementations:** `agyl-website` (clean Astro static site) · `ekom-website`
-> (Astro homepage + raw-HTML pages + Cloudflare Pages Functions backend).
+> **Architecture decision:** the starter **standardizes on Astro components/templates** (one
+> layout + shared components, config-driven). `agyl-website` is the reference architecture.
+> **`ekom-website`'s raw-HTML page duplication (per-page inline `<style>`/token copies) is a
+> migration lesson and reference — NOT architecture to copy.** Everything is a component or
+> template so a value/token is defined once.
+>
+> **Reference implementations:** `agyl-website` (clean Astro — the model) · `ekom-website`
+> (Astro homepage + legacy raw-HTML pages + Cloudflare Pages Functions — migration reference).
 
 ## Target workflow (what a new launch looks like)
 
 1. **Copy** the starter.
-2. **Configure** — edit one config file (branding, ownership, domains, tracking IDs, content).
-3. **Validate** — `npm test` (build + automated checks).
+2. **Configure** — edit one config file (branding, ownership, domains, integration inventory, content).
+3. **Validate** — `npm test` (config-schema validation + build + automated checks).
 4. **Review disclosures** — fill/refresh `LEGAL-REVIEW.md`; get operator (and, where needed, counsel) sign-off.
-5. **Preview-test** — smoke tests on the Cloudflare preview (browser + scriptable).
+5. **Preview-test** — smoke tests on the Cloudflare preview (browser + scriptable; consent matrix).
 6. **Deploy** — follow `MERGE-DEPLOY-PLAN.md`: mark ready → merge → prod-verify.
 7. **Manual cleanup** — any vendor/worker/secret teardown per the plan.
 
 ## 1. Foundation
 
-- **Astro** (`output: 'static'`) on **Cloudflare Pages** (auto-deploy on merge to `main`; per-branch previews at `https://<deploy-id>.<project>.pages.dev`).
-- Build → `dist/`; verification `npm test` = `astro build && node scripts/check-site.mjs`.
-- **`.gitignore` MUST exclude `node_modules/`, `dist/`, `.astro/` from day one.** *(Lesson: EKOM had 9,844 generated files committed.)*
+- **Astro** (`output: 'static'`) on **Cloudflare Pages** (auto-deploy on merge to `main`; per-branch previews). Standardized components/templates — no per-page style/token duplication.
+- Build → `dist/`; verification `npm test` = config validation + `astro build` + `node scripts/check-site.mjs`.
+- **`.gitignore` MUST exclude `node_modules/`, `dist/`, `.astro/` from day one.**
 
 ## 2. Configuration surface (single source of truth)
 
-One `site.config` object drives everything the starter templates read:
+One typed `site.config` object drives every template, the CSP, disclosures, checks, and cleanup.
 
-- **brand** — name, wordmark, color tokens. *Pick AA-compliant secondary-text tokens up front* (see §8 lesson).
-- **ownership** — operating legal entity (e.g. `AGYL AI, Inc.`), parent-vs-product relationship, any d.b.a. *(AGYL is parent/operator; EKOM is a product of AGYL — reflected in legal pages + JSON-LD.)*
+### 2a. Public identifiers vs. secrets (hard separation)
+- **Public identifiers** (safe in config / shipped to the client): GA4 measurementId, Clarity projectId, LinkedIn partnerId, Apollo appId, Cloudflare Web Analytics token, canonical domain, contact addresses.
+- **Secrets / environment bindings** (NEVER in `site.config` or client code — Cloudflare env only): webhook keys, API keys, service-account JSON (e.g. `APOLLO_WEBHOOK_SECRET`, `GOOGLE_SERVICE_ACCOUNT_JSON`). The config schema references these by *name*, never value.
+
+### 2b. Config fields
+- **brand** — name, wordmark, color tokens (choose AA-compliant secondary-text tokens up front — see §11).
+- **ownership** — operating legal entity, parent-vs-product relationship, d.b.a.
 - **domains** — canonical origin, `www`→apex redirect.
-- **tracking IDs** — GA4 measurementId, Clarity projectId, LinkedIn partnerId, Apollo appId, internal-device query flag, consent cookie name (`<brand>_consent`).
-- **contact** — info@ / hello@ / security@ addresses (keep consistent across all pages **and** `security.txt`).
-- **feature flags** — `apolloPreConsent` (bool), `roamSchedulingUrl`, per-tool analytics enable.
+- **content** — page copy blocks.
+- **integrationInventory** — see §2d.
+- **compliance claims** — SOC 2 / DPA / certifications: each must be explicitly confirmed *for this entity* (see §2c).
 
-## 3. Page templates
+### 2c. Config schema validation (`npm test` fails the build on any of these)
+- Malformed **domain**, **email**, or vendor **ID** formats.
+- **Impossible feature combinations** (e.g. Apollo `mode: preConsent` while Apollo is disabled; analytics enabled with no consent banner; `postConsent` identification with no consent flow).
+- **Unresolved placeholders** (`__GA_ID__`, `TODO`, `example.com`, `AGYL AI, Inc.` copied into a different site, etc.).
+- **Unconfirmed copied legal / entity / compliance claims** — any SOC 2 / DPA / "certified" / entity-name string not explicitly marked confirmed-for-this-site fails validation (prevents pasting another company's claims).
 
-`home`, `contact` (Roam embed + `mailto:`), `privacy`, `terms`, `security`, `404`, plus a reusable **legal-page shell**. **Page-aware layout** injects unique `title`, `description`, `canonical`, Open Graph, Twitter, and optional `noindex` per page.
+### 2d. Integration inventory (the one place vendors are declared)
+A single `integrations[]` array is the authority. Each entry: `{ id, enabled, type, publicId, cspOrigins[], scripts[], loadTiming, disclosureKey, previewChecks[], cleanupTasks[] }`. **Enabling a vendor here — and only here — drives:**
+1. **Script loading** (which scripts load, and when),
+2. **CSP origins** (the `_headers` allowlist is generated from `cspOrigins`),
+3. **Disclosure text + disclosure checks** (privacy/banner copy keyed off `disclosureKey`),
+4. **Preview smoke tests** (each enabled vendor contributes its `previewChecks`),
+5. **Cleanup tasks** (teardown checklist generated from enabled vendors).
 
-## 4. Consent + tracking
+Supported integration types: **analytics** (GA4, Microsoft Clarity, LinkedIn Insight Tag, **Cloudflare Web Analytics / dashboard injection**), **identification** (Apollo — see §4), **scheduling** (Roam), **consent** (first-party banner), **bot** (Turnstile). No vendor may be wired anywhere except through this inventory (prevents drift between scripts, CSP, disclosures, and cleanup).
 
-- **First-party consent banner** (no third-party CMP). Cookie `<brand>_consent`, 365d.
-- **"Accept all"** → GA4 + Microsoft Clarity + LinkedIn Insight Tag. **"Essential only"** → none of them.
-- **Apollo (company-level) pre-consent exception** (configurable via `apolloPreConsent`): loads *before* consent, **suppressed on the internal-device flag and on Global Privacy Control (GPC)**, disclosed plainly in the banner + privacy policy.
-- **Banner copy must state exact behavior:** "Essential only" prevents GA4/Clarity/LinkedIn; Apollo stays pre-consent unless GPC or the internal flag suppresses it.
-- **Rule:** any pre-consent identifier must honor GPC + internal-device and be disclosed **accurately** (never label it "consent-gated" if it fires pre-consent). **Person-level** pre-consent trackers (e.g. Opensend) are avoided by default; if ever used they require explicit legal sign-off + disclosure + a documented retention/deletion basis.
+## 3. Page templates (Astro components)
+
+`home`, `contact` (Roam embed + `mailto:`), `privacy`, `terms`, `security`, `404` + a reusable **legal-page shell**. **Page-aware layout** injects unique `title`, `description`, `canonical`, OG, Twitter, and `noindex` per page. One `<main id="main-content">`, one `<h1>` per page, skip link, semantic landmarks (see §11).
+
+## 4. Consent + identification
+
+- **First-party consent banner** (no third-party CMP). Cookie `<brand>_consent`, 365d. "Accept all" → all enabled **analytics** integrations. "Essential only" → none.
+- **Apollo identification `mode`** (replaces the old boolean): `disabled` | `preConsent` | `postConsent`.
+  - `disabled` — never loads.
+  - `preConsent` — loads before consent (company-level), **suppressed on internal-device flag and GPC**, disclosed in banner + privacy.
+  - `postConsent` — loads only after "Accept all", like the analytics tools.
+- **Cloudflare Web Analytics** (integration) — cookieless; document whether it is consent-gated (it is privacy-friendly/cookieless, so may run without consent — record the decision).
+- Banner copy must state exact behavior for the active config.
+
+### 4a. Consent behavior matrix (documented AND tested — §8)
+| Scenario | Analytics (GA4/Clarity/LinkedIn) | Apollo (mode=preConsent) | Banner |
+|---|---|---|---|
+| First visit | not loaded until choice | loads (unless GPC/internal) | shown |
+| Returning — "all" | loaded | loads (unless GPC/internal) | hidden |
+| Returning — "essential" | not loaded | loads (unless GPC/internal) | hidden |
+| GPC signal on | require "all" to load; document | **suppressed** | shown if no cookie |
+| Internal-device flag | **suppressed** | **suppressed** | (suppressed) |
+| Reopened cookie settings | reloads banner; choice updates cookie + loading | per new choice | shown |
+| Consent revocation (all→essential / cleared) | no new loads; already-loaded persist until reload, do not reload after | per mode | shown |
+
+Each row is a required preview/automated test case.
 
 ## 5. Roam scheduling
 
-Embed on `/contact` via `https://ro.am/lobbylinks/embed.js`; the iframe `src` is the ro.am booking URL (apex). CSP must allow `https://ro.am` in **both** `script-src` and `frame-src`. **Verify the widget renders under CSP on the preview** (browser check — CI can't prove this).
+Embed on `/contact` via `https://ro.am/lobbylinks/embed.js`; iframe `src` = the ro.am booking URL (apex). CSP allows `https://ro.am` in `script-src` + `frame-src` (from the integration inventory). Verify the widget renders under CSP on the preview (browser check).
 
-## 6. CSP / security headers (`public/_headers`)
+## 6. CSP / security headers (`public/_headers`, generated from the integration inventory)
 
-Baseline: `default-src 'self'`; `script-src 'self' 'unsafe-inline'` + allowlist (GTM, GA, Clarity, LinkedIn, Apollo assets, ro.am, Cloudflare); `style-src 'self' 'unsafe-inline'`; `font-src 'self'` (**self-host fonts**); `img-src`; `connect-src` (+ `https://*.apollo.io` when Apollo is on); `frame-src https://ro.am` (+ Turnstile if used); `frame-ancestors 'none'`; `base-uri 'self'`; `form-action 'self'`. Plus `X-Frame-Options: DENY`, `X-Content-Type-Options: nosniff`, `Referrer-Policy`, `Permissions-Policy`, `Strict-Transport-Security` (HSTS). *(`'unsafe-inline'` in `script-src` stays until inline scripts move to nonces/hashes — deferred hardening item.)*
+Baseline: `default-src 'self'`; `script-src 'self' 'unsafe-inline'` + inventory origins; `style-src 'self' 'unsafe-inline'`; `font-src 'self'` (self-host fonts); `img-src`; `connect-src` + inventory origins; `frame-src` (Roam/Turnstile if enabled); `frame-ancestors 'none'`; `base-uri 'self'`; `form-action 'self'`. Plus `X-Frame-Options: DENY`, `X-Content-Type-Options: nosniff`, `Referrer-Policy`, `Permissions-Policy`.
+
+### 6a. HSTS — qualified (do NOT copy AGYL/EKOM's aggressive value blindly)
+A **new** site starts with `Strict-Transport-Security: max-age=<short>` **only** — **no `includeSubDomains`, no `preload`** by default.
+- `includeSubDomains` requires **verified HTTPS on every subdomain** first (it will break any HTTP-only subdomain).
+- `preload` is a **separate, explicitly recorded decision** (hard to reverse; requires submission to the preload list). Record it in `DECISIONS.md` before enabling.
+
+*(`'unsafe-inline'` in `script-src` stays until inline scripts move to nonces/hashes — deferred hardening item.)*
 
 ## 7. SEO / metadata
 
-Per-page unique title/description/canonical/OG/Twitter. `sitemap.xml` (exclude `noindex` pages; keep `lastmod` current). `robots.txt`. **JSON-LD**: Organization with a stable `@id` (`<origin>/#org`) + WebSite (`publisher` → `@id`) + optional FAQPage / SoftwareApplication (`publisher` → `@id`) — **link entities via `@id`** so brand + legal entity aren't separate unlinked orgs. **Self-host fonts** (no Google Fonts CDN — render-blocking). Favicon/PWA block on **every** page (root paths; manifest references only files that exist).
+Per-page unique title/description/canonical/OG/Twitter. `sitemap.xml` (exclude `noindex` pages; current `lastmod`). `robots.txt`. **JSON-LD**: Organization with stable `@id` (`<origin>/#org`), WebSite + any SoftwareApplication/FAQPage all referencing it via `publisher: {@id}` — entity-linked, no unlinked orgs. **Self-host fonts** (no Google Fonts CDN). Favicon/PWA block on every page (root paths; manifest references only existing files).
 
 ## 8. Automated checks (`scripts/check-site.mjs`, run by `npm test`)
 
-- Required routes exist in `dist/`.
-- Canonical present per page.
-- `consent.js` contains the Apollo/GPC suppression gates.
-- `_headers` contains the required CSP origins.
-- **No generated artifacts tracked** (`git ls-files` shows no `node_modules/`,`dist/`,`.astro/`).
-- **Disclosure consistency** — privacy-policy wording matches actual `consent.js` behavior (no "consent-gated" claim for a pre-consent tracker; no phantom tools like a Meta Pixel that isn't loaded).
-- **No broken/encoded pages** — every built page is real HTML (not base64/placeholder).
-- *(Contrast is verified by direct WCAG computation, never a tool's alpha-over-dark guess — see §10.)*
+Recursively inspect **every built HTML page** in `dist/` and assert:
+- **Exactly one `<h1>`** per page (unless the page is explicitly exempted in config) and logical heading order.
+- **JSON-LD parses** and `@id` entity links resolve (Organization `#org` referenced as publisher by WebSite/others).
+- **All manifest + favicon assets referenced actually exist** on disk.
+- **No Google Fonts** references and **no unexpected third-party scripts** — every external script origin must be declared in the integration inventory.
+- **Integrations ⇄ CSP ⇄ disclosures ⇄ smoke tests agree** — every enabled vendor has its CSP origins, disclosure text, and preview checks; nothing enabled is undisclosed; nothing disclosed is disabled.
+- **Preview deployments are `noindex`** (preview builds must carry a robots noindex so `*.pages.dev` previews aren't indexed).
+- **Consent behavior matrix** (§4a) is exercised (headless/consent-state simulation of the 7 scenarios).
+- **Reject encoded/placeholder/unresolved pages** — no base64-encoded HTML, no `TODO`/placeholder/unresolved-template markers in shipped pages.
+- Required routes exist; canonical present per page.
+- **No generated artifacts tracked** in git (`node_modules/`, `dist/`, `.astro/`).
+- Config-schema validation (§2c) passes.
+- *(Contrast is verified by direct WCAG computation, never a tool's alpha-over-dark estimate — see §11.)*
 
-## 9. Governance / records (templates in `docs/`)
+## 9. Accessibility acceptance (required before approval)
 
-- **`DECISIONS.md`** — product/ownership/tracking decisions + change discipline.
-- **`WEBSITE-PLATFORM.md`** — scope boundaries (marketing site only; product/app lives elsewhere).
-- **`LEGAL-REVIEW.md`** — scoped review checklist + a **sign-off record** stating who approved and whether outside counsel reviewed (never imply counsel approval when it was operator sign-off).
-- **`MERGE-DEPLOY-PLAN.md`** — preview smoke tests, merge order, prod verification, manual cleanup, rollback.
+- **One `<h1>`** per page; logical, unskipped heading hierarchy.
+- **Semantic landmarks** (`header`/`nav`/`main`/`footer`) + a working **skip link** to `#main-content`.
+- **Keyboard navigation**: all interactive elements reachable/operable, logical order, no traps; **visible `:focus-visible`** styling.
+- **Accessible consent banner**: keyboard-operable real `<button>`s, appropriate role/label (non-modal `role="region"` unless full modal focus-management is implemented).
+- **Forms**: programmatic label association, `aria-required` + visible required markers, accessible error messaging.
+- **Images/SVGs**: `alt`/accessible names for meaningful graphics; `aria-hidden` for decorative; data-viz SVGs carry a `<title>` or text equivalent.
+- **Reduced motion**: honor `prefers-reduced-motion` in CSS and JS.
+- **Contrast — computed, AA (4.5:1 text / 3:1 large & UI)** across **all** surfaces: color **tokens**, **hard-coded** colors, **SVG text fills**, and **dark footers** (white-on-navy at reduced opacity is the classic miss). Verify by direct computation.
 
-## 10. Preview / deploy / rollback / cleanup checklists
+## 10. Performance budgets (lightweight, reviewed each launch)
 
-- **Preview smoke:** *browser* (Roam renders under CSP; GPC blocks Apollo; "Accept all" vs "Essential only" behavior) **+** *scriptable* (headers, routes, JSON-LD validity, any API rejects unauthenticated requests non-mutatingly).
-- **Deploy:** mark ready → merge → auto-deploy → **prod verify** (`curl -I` headers/routes/JSON-LD + a browser pass for Apollo-without-GPC and Turnstile on the real domain).
+- **Fonts**: self-hosted, subset, `font-display: swap`, preload only the critical face; cap total font weight (target ≤ ~100 KB).
+- **JavaScript**: minimal; no render-blocking third-party in `<head>`; consent/analytics loaded async/deferred; cap initial JS.
+- **Images**: correctly sized, `width`/`height` set, `loading="lazy"` below the fold, modern formats; cap hero/OG image weight.
+- **Lighthouse / Core Web Vitals review**: targets LCP < 2.5s, CLS < 0.1, INP < 200ms; Lighthouse Accessibility & SEO ≥ 90. Run on the preview (browser) as part of smoke testing.
+
+## 11. Governance / records (templates in `docs/`)
+
+`DECISIONS.md` (incl. the HSTS preload decision), `WEBSITE-PLATFORM.md`, `LEGAL-REVIEW.md` (sign-off record; state clearly if counsel has not reviewed), `MERGE-DEPLOY-PLAN.md`.
+
+## 12. Generated assets
+
+`sitemap.xml`, `robots.txt`, favicon set + `site.webmanifest` (referencing existing files only), **`/.well-known/security.txt`** (security contact + policy link), and OG image.
+
+## 13. Preview / deploy / rollback / cleanup checklists
+
+- **Preview smoke:** browser (Roam under CSP; consent behavior matrix incl. GPC/internal; Lighthouse/CWV) + scriptable (headers, routes, JSON-LD, non-mutating API checks). Preview is `noindex`.
+- **Deploy:** mark ready → merge → auto-deploy → prod verify (headers/routes/JSON-LD + browser Apollo-without-GPC / Turnstile on the real domain).
 - **Rollback:** Cloudflare per-deployment rollback, or `git revert` the merge.
-- **Manual cleanup:** retire decommissioned workers/routes/secrets — **only the intended vendor's** (never sibling secrets); cancel vendor accounts; scrub vendor-sourced data.
+- **Cleanup:** teardown tasks generated from the integration inventory — retire only the intended vendor's workers/routes/secrets (never siblings); cancel vendor accounts; scrub vendor-sourced data.
 
-## 11. Lessons learned (hard-won — bake these into the starter)
+## 14. Lessons learned (bake into the starter)
 
-1. **Gitignore generated artifacts from day one** (`node_modules/`, `dist/`, `.astro/`).
-2. **Compute WCAG contrast directly; don't trust audit tools** — they mis-model alpha-over-dark (AGYL's "failing" `--faint` was actually 6.3:1). Only touch surfaces that genuinely fail.
-3. **Any pre-consent tracker** needs GPC + internal-device suppression + accurate disclosure; **person-level** pre-consent needs legal sign-off.
-4. **Removing a vendor is a full sweep:** frontend loader + banner + privacy disclosure + CSP origins + backend functions/workers + secrets + vendor account + retained data.
-5. **Secret hygiene:** touch only the target vendor's secrets — never siblings (Apollo survived the Opensend teardown because only `OPENSEND_*` was removed).
-6. **Token duplication across raw-HTML pages:** change the token *definition* per file (or centralize); a fix isn't done until it's in every page (and the SVG/hardcoded copies too).
-7. **A base64-encoded page copied verbatim serves as garbage** — validate rendered output, not just HTTP 200.
-8. **Compliance wording:** SOC 2 is *attested/audited*, not "certified"; CCPA "sell/share" has nuance; GPC opt-out applies only to what actually fires pre-consent; state plainly when counsel has *not* reviewed.
-9. **Preview smoke tests catch what CI can't** — Roam rendering under CSP, Turnstile domain-allowlist errors on `*.pages.dev` previews.
-10. **Build/review split works:** one agent builds, an independent reviewer (Codex) validates — it caught artifact bloat, a CSP gap, and over-broad "do not sell" language across the AGYL/EKOM launches.
+1. Gitignore generated artifacts from day one.
+2. Compute WCAG contrast directly; audit tools mis-model alpha-over-dark.
+3. Any pre-consent identifier: GPC + internal suppression + accurate disclosure; person-level needs legal sign-off.
+4. Removing a vendor is a full sweep: loader + banner + disclosure + CSP + backend + secrets + vendor account + retained data — all driven by the integration inventory.
+5. Secret hygiene: touch only the target vendor's secrets, never siblings.
+6. Components/templates over per-page duplication — a value is defined once (EKOM raw-HTML is the anti-pattern/migration reference).
+7. A base64/placeholder page copied verbatim ships as garbage — validate rendered output.
+8. Compliance wording: SOC 2 is *attested*, not "certified"; CCPA "sell/share" nuance; state when counsel has not reviewed; never paste another entity's claims (config validation enforces).
+9. Preview smoke tests catch what CI can't (Roam under CSP; Turnstile domain-allowlist on `*.pages.dev`).
+10. Build/review split (Claude Code builds, Codex reviews) catches artifact bloat, CSP gaps, and over-broad legal copy.
 
 ---
 
