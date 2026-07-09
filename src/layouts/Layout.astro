@@ -262,6 +262,10 @@ const ogImageUrl = new URL(ogImage, 'https://agyl.ai').toString();
     line-height:1.04; letter-spacing:-.025em; margin:0; max-width:18ch;
   }
   h2 em{ font-style:normal; color:var(--mute); }
+  /* Visible keyboard focus indicator (additive; does not affect mouse focus) */
+  a:focus-visible, button:focus-visible, .btn:focus-visible {
+    outline: 2px solid var(--ink); outline-offset: 2px;
+  }
   .lede{
     font-size:clamp(20px,1.7vw,24px); line-height:1.5; color:var(--ink-2);
     max-width:54ch; margin:40px 0 0; font-weight:400;
@@ -470,7 +474,7 @@ const ogImageUrl = new URL(ogImage, 'https://agyl.ai').toString();
   }
   .outcome{ background:var(--bg); padding:48px 40px; }
   .outcome .ico{ font-family:var(--mono); font-size:11px; letter-spacing:.16em; color:var(--faint); margin-bottom:36px; }
-  .outcome h4{ font-weight:400; font-size:30px; letter-spacing:-.02em; line-height:1.1; margin:0 0 18px; max-width:14ch; }
+  .outcome h3{ font-weight:400; font-size:30px; letter-spacing:-.02em; line-height:1.1; margin:0 0 18px; max-width:14ch; }
   .outcome p{ font-size:16px; line-height:1.6; color:var(--mute); margin:0; }
 
   .op-loop{
@@ -481,7 +485,7 @@ const ogImageUrl = new URL(ogImage, 'https://agyl.ai').toString();
   .op-card{ background:var(--bg); padding:48px 40px 52px; transition:background .3s; }
   .op-card:hover{ background:var(--bg-2); }
   .op-card .step{ font-family:var(--mono); font-size:11px; letter-spacing:.18em; color:var(--faint); margin-bottom:22px; }
-  .op-card h4{ font-weight:500; font-size:26px; letter-spacing:-.02em; margin:0 0 18px; line-height:1.1; }
+  .op-card h3{ font-weight:500; font-size:26px; letter-spacing:-.02em; margin:0 0 18px; line-height:1.1; }
   .op-card p{ font-size:15px; line-height:1.6; color:var(--mute); margin:0; }
   .loop-note{
     display:flex; justify-content:space-between; align-items:center;
@@ -631,7 +635,7 @@ const ogImageUrl = new URL(ogImage, 'https://agyl.ai').toString();
   .principle:nth-child(even){ padding-left:48px; padding-right:0; border-left:1px solid var(--hair); }
   .principle:nth-last-child(-n+2){ border-bottom:1px solid var(--hair); }
   .principle .n{ font-family:var(--mono); font-size:11px; letter-spacing:.18em; color:var(--faint); margin-bottom:14px; }
-  .principle h5{ font-weight:500; font-size:22px; letter-spacing:-.015em; line-height:1.2; margin:0 0 12px; }
+  .principle h3{ font-weight:500; font-size:22px; letter-spacing:-.015em; line-height:1.2; margin:0 0 12px; }
   .principle p{ font-size:16px; line-height:1.6; color:var(--mute); margin:0; max-width:48ch; }
 
   .close{ padding:200px 0 220px; }
@@ -676,11 +680,11 @@ const ogImageUrl = new URL(ogImage, 'https://agyl.ai').toString();
     font-family:var(--mono); font-size:11px; letter-spacing:.18em;
     color:var(--faint); margin-bottom:28px;
   }
-  .pillar h4{
+  .pillar h3{
     font-weight:400; font-size:32px; letter-spacing:-.025em; line-height:1.05;
     margin:0 0 20px; max-width:14ch;
   }
-  .pillar h4 em{ font-style:normal; color:var(--mute); }
+  .pillar h3 em{ font-style:normal; color:var(--mute); }
   .pillar p{ font-size:16px; line-height:1.65; color:var(--mute); margin:0 0 14px; max-width:36ch; }
   .pillar p b{ color:var(--ink); font-weight:500; }
   .pillar .p-list{
