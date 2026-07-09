@@ -132,7 +132,7 @@
     }
     var div = document.createElement('div');
     div.id = 'agyl-consent';
-    div.setAttribute('role', 'region');
+    div.setAttribute('role', 'dialog');
     div.setAttribute('aria-label', 'Cookie consent');
     div.innerHTML =
       '<div class="akc-inner">' +
