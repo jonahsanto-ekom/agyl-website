@@ -7,7 +7,7 @@
 
 ## Preconditions (all must be true before starting)
 
-- [ ] Legal review complete and approved for both sites (see `LEGAL-REVIEW.md`).
+- [x] Privacy/legal lane **approved by operator** (Jonah, 2026-07-08); outside counsel has **not** reviewed — see `LEGAL-REVIEW.md`.
 - [ ] Codex final pre-merge check on this plan.
 - [ ] Both PRs still show a green Cloudflare Pages check.
 
@@ -17,8 +17,10 @@ On the Cloudflare Pages **preview** deploy for `codex/agyl-website-foundation`:
 
 - [ ] **Roam widget** renders and is interactive on `/contact`; browser console shows
       **no CSP violations** (the one thing automated tests can't prove).
-- [ ] Consent: with a GPC browser extension on, Apollo does **not** load (no `assets.apollo.io`
-      in the Network tab). "Accept all" loads GA4/Clarity/LinkedIn; "Essential only" loads none.
+- [ ] Consent: "Accept all" loads GA4, Microsoft Clarity, and LinkedIn. "Essential only" prevents
+      GA4, Microsoft Clarity, and LinkedIn from loading. Apollo remains pre-consent and still loads
+      unless GPC (test with a browser GPC extension → no `assets.apollo.io` request) or the
+      internal-device flag (`?agyl-internal=1`) suppresses it.
 - [ ] `/privacy`, `/terms`, `/security`, `/404` render; canonical URLs correct.
 
 ## Step 2 — Merge AGYL PR #3
@@ -34,9 +36,14 @@ On the preview deploy for `fix/consent-privacy-accuracy`:
 - [ ] **GPC test:** with GPC on, Apollo does **not** load; with GPC off, it does. Internal flag
       `?ekom-internal=1` suppresses it.
 - [ ] **No Opensend:** zero requests to `cdn.aggle.net` anywhere on the site.
-- [ ] Consent: "Accept all" loads GA4/Clarity/LinkedIn; "Essential only" loads none.
-- [ ] `/api/opensend-webhook` returns 404 (function deleted); `/api/identify` still works
-      (the Apollo path).
+- [ ] Consent: "Accept all" loads GA4, Microsoft Clarity, and LinkedIn. "Essential only" prevents
+      GA4, Microsoft Clarity, and LinkedIn from loading. Apollo remains pre-consent and still loads
+      unless GPC or the internal-device flag (`?ekom-internal=1`) suppresses it.
+- [ ] `/api/opensend-webhook` returns 404 (function deleted). `/api/identify` is reachable but
+      **non-mutating test only**: send an unauthenticated POST (no valid `X-Ekom-Key` header) and
+      confirm it returns **401 Unauthorized** (or **500** if the preview env intentionally lacks
+      `APOLLO_WEBHOOK_SECRET`). Do **not** send a valid Apollo webhook or create a CRM signal
+      during smoke testing.
 - [ ] `/privacy` + `/security` show the updated wording; chat widget works; `/404` renders.
 
 ## Step 4 — Merge EKOM PR #3
