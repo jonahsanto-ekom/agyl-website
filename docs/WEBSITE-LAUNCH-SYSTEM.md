@@ -141,7 +141,7 @@ Recursively inspect **every built HTML page** in `dist/` and assert:
 - **One `<h1>`** per page; logical, unskipped heading hierarchy.
 - **Semantic landmarks** (`header`/`nav`/`main`/`footer`) + a working **skip link** to `#main-content`.
 - **Keyboard navigation**: all interactive elements reachable/operable, logical order, no traps; **visible `:focus-visible`** styling.
-- **Accessible consent banner**: must have an accessible name/description, keyboard-operable real `<button>`s, appropriate announcement, and **tested focus behavior**. Implement as a **named region** (`role="region"` + label) **or** a **non-modal dialog**, chosen to match the actual behavior (a `role="dialog"` implies focus management/trap; a persistent bar is better as a labeled region). Do **not** universally prescribe one — pick per implementation and verify it.
+- **Accessible consent banner**: must have an accessible name/description, keyboard-operable real `<button>`s, appropriate announcement, and **tested focus behavior**. Implement as a **named region** (`role="region"` + label) **or** a **non-modal dialog**, chosen to match the actual behavior (a non-modal `role="dialog"` requires deliberate focus management; focus trapping applies only to a modal dialog; a persistent bar is better as a labeled region). Do **not** universally prescribe one — pick per implementation and verify it.
 - **Forms**: programmatic label association, `aria-required` + visible required markers, accessible error messaging.
 - **Images/SVGs**: `alt`/accessible names for meaningful graphics; `aria-hidden` for decorative; data-viz SVGs carry a `<title>` or text equivalent.
 - **Reduced motion**: honor `prefers-reduced-motion` in CSS and JS.
