@@ -1,0 +1,30 @@
+---
+import LegalPage from '../components/LegalPage.astro';
+---
+<LegalPage
+  title="Security and Trust · AGYL"
+  description="An overview of AGYL’s security, tenant-isolation, and data-governance posture."
+  canonicalPath="/security"
+  eyebrow="Trust"
+>
+  <Fragment slot="heading">Security and Trust</Fragment>
+  <Fragment slot="summary">AGYL is designed so each customer’s records, standards, and operational intelligence remain isolated and governed by that customer.</Fragment>
+
+  <h2>Architecture</h2>
+  <p>AGYL is designed so each customer's records and customer-specific context are isolated from other customers, and customer data is not used to train models that serve another customer.</p>
+
+  <h2>Core controls</h2>
+  <ul>
+    <li>Encryption in transit and at rest.</li>
+    <li>Role-based access appropriate to the deployed environment.</li>
+    <li>Traceable decisions and audit records for governed changes.</li>
+    <li>Customer-controlled thresholds for decisions that require review.</li>
+    <li>Vendor and access review as part of the operating security program.</li>
+  </ul>
+
+  <h2>Compliance posture</h2>
+  <p>AGYL maintains a security program aligned with the trust commitments presented on this site, including SOC 2 controls and support for applicable GDPR and CCPA obligations. The exact controls, reports, data-processing terms, and deployment responsibilities for a client engagement are provided during security review and governed by the applicable agreement.</p>
+
+  <h2>Responsible reporting</h2>
+  <p>If you believe you have found a security issue involving AGYL, do not include sensitive customer data in your initial message. Send a concise description to <a href="mailto:info@agyl.ai">info@agyl.ai</a>, and we will coordinate a secure follow-up channel.</p>
+</LegalPage>

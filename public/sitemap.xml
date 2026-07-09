@@ -8,8 +8,26 @@
   </url>
   <url>
     <loc>https://agyl.ai/contact</loc>
-    <lastmod>2026-06-20</lastmod>
+    <lastmod>2026-07-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://agyl.ai/privacy</loc>
+    <lastmod>2026-07-08</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://agyl.ai/terms</loc>
+    <lastmod>2026-07-08</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://agyl.ai/security</loc>
+    <lastmod>2026-07-08</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
   </url>
 </urlset>

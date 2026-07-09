@@ -1,0 +1,71 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  canonicalPath: string;
+  eyebrow: string;
+}
+
+const { title, description, canonicalPath, eyebrow } = Astro.props;
+---
+<Layout title={title} description={description} canonicalPath={canonicalPath}>
+  <nav class="legal-nav">
+    <a class="legal-brand" href="/" aria-label="AGYL home">AGYL</a>
+    <a href="/">← agyl.ai</a>
+  </nav>
+  <main class="legal-shell">
+    <header>
+      <div class="legal-eyebrow">{eyebrow}</div>
+      <h1><slot name="heading" /></h1>
+      <p class="legal-summary"><slot name="summary" /></p>
+      <p class="legal-date">Effective July 8, 2026</p>
+    </header>
+    <article>
+      <slot />
+    </article>
+    <footer>
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+      <a href="/security">Security</a>
+      <button type="button" onclick="window.agylShowConsent && window.agylShowConsent()">Cookie settings</button>
+    </footer>
+  </main>
+</Layout>
+
+<style>
+  .legal-nav{
+    position:sticky;top:0;z-index:20;height:64px;padding:0 32px;
+    display:flex;align-items:center;justify-content:space-between;
+    background:rgba(10,10,10,.92);border-bottom:1px solid var(--hair);
+    backdrop-filter:blur(16px);
+  }
+  .legal-nav a{color:var(--mute);text-decoration:none;font:12px var(--mono);letter-spacing:.08em}
+  .legal-nav .legal-brand{color:var(--ink);font:300 20px 'Jost',sans-serif;letter-spacing:.18em}
+  .legal-shell{max-width:860px;margin:0 auto;padding:96px 32px 72px}
+  header{padding-bottom:56px;border-bottom:1px solid var(--hair)}
+  .legal-eyebrow,.legal-date{
+    font:11px var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--faint)
+  }
+  h1{font-size:clamp(42px,7vw,72px);font-weight:300;letter-spacing:-.035em;line-height:1;margin:24px 0}
+  .legal-summary{max-width:650px;color:var(--mute);font-size:18px;line-height:1.65}
+  .legal-date{margin-top:24px}
+  article{padding:56px 0}
+  article :global(h2){font-size:26px;line-height:1.2;margin:48px 0 16px;max-width:none}
+  article :global(h2:first-child){margin-top:0}
+  article :global(h3){font-size:18px;font-weight:500;margin:30px 0 10px}
+  article :global(p),article :global(li){color:var(--mute);font-size:16px;line-height:1.75}
+  article :global(a){color:var(--ink)}
+  article :global(ul){padding-left:22px}
+  footer{border-top:1px solid var(--hair);padding-top:28px;display:flex;flex-wrap:wrap;gap:24px}
+  footer a,footer button{
+    border:0;background:none;padding:0;color:var(--faint);font:11px var(--mono);
+    letter-spacing:.12em;text-transform:uppercase;text-decoration:none;cursor:pointer
+  }
+  footer a:hover,footer button:hover{color:var(--ink)}
+  @media(max-width:600px){
+    .legal-nav{padding:0 20px}
+    .legal-shell{padding:72px 22px 56px}
+  }
+</style>

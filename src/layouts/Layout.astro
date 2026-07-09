@@ -1,16 +1,53 @@
 ---
+import '@fontsource/inter/300.css';
+import '@fontsource/inter/400.css';
+import '@fontsource/inter/500.css';
+import '@fontsource/inter/600.css';
+import '@fontsource/inter/700.css';
+import '@fontsource/jetbrains-mono/400.css';
+import '@fontsource/jetbrains-mono/500.css';
+import '@fontsource/jost/300.css';
+import '@fontsource/jost/400.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonicalPath?: string;
+  ogImage?: string;
+  noindex?: boolean;
+}
+
+const {
+  title = 'AGYL AI · The operating layer for AI-ready data',
+  description = 'Your systems weren’t built to share what they know. AGYL builds the AI layer that connects them and turns fragmented data into something you can actually act on.',
+  canonicalPath = '/',
+  ogImage = '/og.png',
+  noindex = false,
+} = Astro.props;
+
+const canonicalUrl = new URL(canonicalPath, 'https://agyl.ai').toString();
+const ogImageUrl = new URL(ogImage, 'https://agyl.ai').toString();
 ---
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AGYL AI · The operating layer for AI-ready data</title>
-<meta name="description" content="Your systems weren’t built to share what they know. AGYL builds the AI layer that connects them and turns fragmented data into something you can actually act on.">
+<title>{title}</title>
+<meta name="description" content={description}>
+<link rel="canonical" href={canonicalUrl}>
+{noindex && <meta name="robots" content="noindex, nofollow">}
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AGYL">
+<meta property="og:title" content={title}>
+<meta property="og:description" content={description}>
+<meta property="og:url" content={canonicalUrl}>
+<meta property="og:image" content={ogImageUrl}>
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content={title}>
+<meta name="twitter:description" content={description}>
+<meta name="twitter:image" content={ogImageUrl}>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
 <style is:global>
   :root{
     --bg:#0A0A0A;
@@ -608,8 +645,12 @@
   .foot-brand{ font-size:14px; color:var(--mute); line-height:1.6; }
   .foot-brand b{ display:block; color:var(--ink); font-weight:500; font-size:20px; letter-spacing:-.015em; margin-bottom:14px; }
   .foot-links{ display:flex; gap:36px; font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; }
-  .foot-links a{ color:var(--faint); text-decoration:none; transition:color .15s; }
-  .foot-links a:hover{ color:var(--ink); }
+  .foot-links a, .foot-links button{
+    color:var(--faint); text-decoration:none; transition:color .15s;
+    background:none; border:0; padding:0; font:inherit; letter-spacing:inherit;
+    text-transform:inherit; cursor:pointer;
+  }
+  .foot-links a:hover, .foot-links button:hover{ color:var(--ink); }
   .foot-final{
     grid-column:1 / -1; padding-top:32px; margin-top:48px;
     border-top:1px solid var(--hair-2);
@@ -1172,28 +1213,6 @@
     .count-up{ opacity:1; }
   }
 </style>
-<script is:inline>
-(function () {
-  // internal-device flag (parity with the retired Opensend middleware)
-  try {
-    var qs = new URLSearchParams(location.search);
-    if (qs.get('agyl-internal') === '1') localStorage.setItem('agyl_internal', '1');
-    if (qs.get('agyl-internal') === '0') localStorage.removeItem('agyl_internal');
-  } catch (e) {}
-  try { if (localStorage.getItem('agyl_internal') === '1') return; } catch (e) {}
-  // Apollo company-level visitor tracking (mirrors ekom.ai; not consent-gated)
-  var n = Math.random().toString(36).substring(7),
-      o = document.createElement('script');
-  o.src = 'https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache=' + n;
-  o.async = true; o.defer = true;
-  o.onload = function () {
-    if (window.trackingFunctions && window.trackingFunctions.onLoad) {
-      window.trackingFunctions.onLoad({ appId: '67c0e4acb24ed0001d82a4fa' });
-    }
-  };
-  document.head.appendChild(o);
-})();
-</script>
 <script is:inline src="/consent.js"></script>
 </head>
 <body>
