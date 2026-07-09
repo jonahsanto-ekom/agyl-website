@@ -54,7 +54,7 @@ One typed `site.config` object drives every template, the CSP, disclosures, chec
 - **Unconfirmed copied legal / entity / compliance claims** — any SOC 2 / DPA / "certified" / entity-name string not explicitly marked confirmed-for-this-site fails validation (prevents pasting another company's claims).
 
 ### 2d. Integration inventory (the one place vendors are declared)
-A single `integrations[]` array is the authority. Each entry: `{ id, enabled, type, publicId, cspOrigins[], scripts[], loadTiming, disclosureKey, previewChecks[], cleanupTasks[] }`. **Enabling a vendor here — and only here — drives:**
+A single `integrations[]` array is the authority. Each entry: `{ id, enabled, managedBy, type, publicId, cspOrigins[], scripts[], loadTiming, disclosureKey, previewChecks[], cleanupTasks[] }`, where **`managedBy: 'repo' | 'dashboard'`**. **Enabling a vendor here — and only here — drives:**
 1. **Script loading** (which scripts load, and when),
 2. **CSP origins** (the `_headers` allowlist is generated from `cspOrigins`),
 3. **Disclosure text + disclosure checks** (privacy/banner copy keyed off `disclosureKey`),
@@ -62,6 +62,8 @@ A single `integrations[]` array is the authority. Each entry: `{ id, enabled, ty
 5. **Cleanup tasks** (teardown checklist generated from enabled vendors).
 
 Supported integration types: **analytics** (GA4, Microsoft Clarity, LinkedIn Insight Tag, **Cloudflare Web Analytics / dashboard injection**), **identification** (Apollo — see §4), **scheduling** (Roam), **consent** (first-party banner), **bot** (Turnstile). No vendor may be wired anywhere except through this inventory (prevents drift between scripts, CSP, disclosures, and cleanup).
+
+**repo-managed vs dashboard-managed:** `repo`-managed integrations are injected by the repository's own code — the config directly controls loading. `dashboard`-managed integrations may be injected *outside* the repo — e.g. **Cloudflare Web Analytics can be auto-injected via the Cloudflare Pages dashboard** — so the config only **records the expected state** and cannot directly control it. For every `dashboard`-managed integration, preview **and** production smoke tests must **reconcile config against observed scripts/network requests**: the declared expected state must match what the deployed page actually loads (catches both missing-but-expected and present-but-undeclared injections).
 
 ## 3. Page templates (Astro components)
 
@@ -78,17 +80,26 @@ Supported integration types: **analytics** (GA4, Microsoft Clarity, LinkedIn Ins
 - Banner copy must state exact behavior for the active config.
 
 ### 4a. Consent behavior matrix (documented AND tested — §8)
-| Scenario | Analytics (GA4/Clarity/LinkedIn) | Apollo (mode=preConsent) | Banner |
+Matrix is for the analytics tools + Apollo in **`mode: preConsent`** (the AGYL/EKOM shipped behavior). **Key fact: in `preConsent`, the cookie choice never gates Apollo — only GPC and the internal-device flag suppress it.** The banner always follows normal cookie state.
+
+| Scenario | Analytics (GA4/Clarity/LinkedIn) | Apollo (preConsent) | Banner |
 |---|---|---|---|
-| First visit | not loaded until choice | loads (unless GPC/internal) | shown |
+| First visit (no cookie) | not loaded until choice | loads (unless GPC/internal) | shown |
 | Returning — "all" | loaded | loads (unless GPC/internal) | hidden |
 | Returning — "essential" | not loaded | loads (unless GPC/internal) | hidden |
-| GPC signal on | require "all" to load; document | **suppressed** | shown if no cookie |
-| Internal-device flag | **suppressed** | **suppressed** | (suppressed) |
-| Reopened cookie settings | reloads banner; choice updates cookie + loading | per new choice | shown |
-| Consent revocation (all→essential / cleared) | no new loads; already-loaded persist until reload, do not reload after | per mode | shown |
+| GPC signal on | still require "all"; document | **suppressed** | follows cookie state (shown if none) |
+| Internal-device flag | **suppressed** | **suppressed** | **follows normal cookie state — NOT suppressed** |
+| Reopened settings + change choice | reloads per new choice | **unchanged — cookie choice does not gate preConsent Apollo** | shown, then hides on choice |
+| Consent revocation (all→essential / cleared) | no new loads; already-loaded persist until reload, don't reload after | **unchanged (loads unless GPC/internal)** | shown if cleared |
 
-Each row is a required preview/automated test case.
+**Behavior note (accuracy):** AGYL/EKOM do **not** suppress the banner on internal devices — the internal flag suppresses the *trackers* (Apollo + analytics) only, while the banner still follows cookie state. Hiding the banner on internal devices is an **explicit future starter improvement**, not current behavior; do not spec it as shipped.
+
+**Test expectations per Apollo `mode` (all three required):**
+- **`disabled`** — `assets.apollo.io` is never requested in any scenario.
+- **`preConsent`** — requested on first visit and on every return regardless of cookie choice; suppressed **only** by GPC or the internal-device flag; unaffected by reopening settings or revoking consent.
+- **`postConsent`** — requested **only** after "Accept all" (like analytics); not before a choice, not on "essential"; also suppressed by GPC/internal.
+
+Each row + each mode is a required preview/automated test case.
 
 ## 5. Roam scheduling
 
@@ -130,7 +141,7 @@ Recursively inspect **every built HTML page** in `dist/` and assert:
 - **One `<h1>`** per page; logical, unskipped heading hierarchy.
 - **Semantic landmarks** (`header`/`nav`/`main`/`footer`) + a working **skip link** to `#main-content`.
 - **Keyboard navigation**: all interactive elements reachable/operable, logical order, no traps; **visible `:focus-visible`** styling.
-- **Accessible consent banner**: keyboard-operable real `<button>`s, appropriate role/label (non-modal `role="region"` unless full modal focus-management is implemented).
+- **Accessible consent banner**: must have an accessible name/description, keyboard-operable real `<button>`s, appropriate announcement, and **tested focus behavior**. Implement as a **named region** (`role="region"` + label) **or** a **non-modal dialog**, chosen to match the actual behavior (a `role="dialog"` implies focus management/trap; a persistent bar is better as a labeled region). Do **not** universally prescribe one — pick per implementation and verify it.
 - **Forms**: programmatic label association, `aria-required` + visible required markers, accessible error messaging.
 - **Images/SVGs**: `alt`/accessible names for meaningful graphics; `aria-hidden` for decorative; data-viz SVGs carry a `<title>` or text equivalent.
 - **Reduced motion**: honor `prefers-reduced-motion` in CSS and JS.
@@ -149,11 +160,11 @@ Recursively inspect **every built HTML page** in `dist/` and assert:
 
 ## 12. Generated assets
 
-`sitemap.xml`, `robots.txt`, favicon set + `site.webmanifest` (referencing existing files only), **`/.well-known/security.txt`** (security contact + policy link), and OG image.
+`sitemap.xml`, `robots.txt`, favicon set + `site.webmanifest` (referencing existing files only), **`/.well-known/security.txt`** — RFC 9116 fields: `Contact` (required), `Expires` (a future date; required), preferably `Canonical`, optionally `Policy` — and OG image.
 
 ## 13. Preview / deploy / rollback / cleanup checklists
 
-- **Preview smoke:** browser (Roam under CSP; consent behavior matrix incl. GPC/internal; Lighthouse/CWV) + scriptable (headers, routes, JSON-LD, non-mutating API checks). Preview is `noindex`.
+- **Preview smoke:** browser (Roam under CSP; consent behavior matrix incl. GPC/internal + all Apollo modes; Lighthouse/CWV) + scriptable (headers, routes, JSON-LD, non-mutating API checks); **reconcile dashboard-managed integrations — observed scripts/network requests vs config**. Preview is `noindex`.
 - **Deploy:** mark ready → merge → auto-deploy → prod verify (headers/routes/JSON-LD + browser Apollo-without-GPC / Turnstile on the real domain).
 - **Rollback:** Cloudflare per-deployment rollback, or `git revert` the merge.
 - **Cleanup:** teardown tasks generated from the integration inventory — retire only the intended vendor's workers/routes/secrets (never siblings); cancel vendor accounts; scrub vendor-sourced data.
