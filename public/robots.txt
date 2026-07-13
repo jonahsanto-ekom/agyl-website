@@ -1,4 +1,10 @@
+# robots.txt — agyl.ai
+# Content signals (contentsignals.org). Restrictions here are express reservations of
+# rights under Article 4 of EU Directive 2019/790. search=yes (index + cite),
+# ai-train=no (do not train/fine-tune models on this content), use=reference.
+
 User-agent: *
+Content-Signal: search=yes,ai-train=no,use=reference
 Allow: /
 
 Sitemap: https://agyl.ai/sitemap.xml
