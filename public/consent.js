@@ -7,6 +7,12 @@
    Apollo performs company-level visitor identification before consent as an
    approved business-interest exception. It is suppressed for internal devices
    and browsers that send a Global Privacy Control opt-out signal.
+   RB2B (reb2b) PERSON-LEVEL visitor de-anonymization (key DNXY8HDE28O0) fires
+   PRE-consent for all visitors — the SAME workspace key as ekom.ai (unified
+   visitor intelligence) — suppressed on internal-flagged devices and Global
+   Privacy Control (no verification bypass). Person-level via a third-party
+   identity chain (LiveIntent, ip-api, usbrowserspeed); loader origin
+   ddwl4m2hdecbv.cloudfront.net (see CSP script-src in public/_headers).
    Internal device flag: agyl.ai/?agyl-internal=1 disables all analytics on this browser. */
 (function () {
   // Internal-traffic device flag
@@ -108,6 +114,28 @@
     } catch (e) {}
   }
 
+  // RB2B (reb2b) — PERSON-LEVEL visitor de-anonymization (key DNXY8HDE28O0, shared
+  // with ekom.ai for unified visitor intelligence). Fires PRE-consent (called from
+  // init(), like Apollo), suppressed on internal-flagged devices and Global Privacy
+  // Control (the guards below). No verification bypass.
+  function loadReb2b() {
+    if (window.__agylReb2bLoaded) return;
+    if (isInternal()) return;
+    if (gpcOptOut()) return;
+    window.__agylReb2bLoaded = true;
+    try {
+      (function (key) {
+        if (window.reb2b) return;
+        window.reb2b = { loaded: true };
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://ddwl4m2hdecbv.cloudfront.net/b/' + key + '/' + key + '.js.gz';
+        var f = document.getElementsByTagName('script')[0];
+        f.parentNode.insertBefore(s, f);
+      })('DNXY8HDE28O0');
+    } catch (e) { /* best-effort */ }
+  }
+
   function loadOnConsent() {
     if (isInternal()) return;
     loadGA();
@@ -136,7 +164,7 @@
     div.setAttribute('aria-label', 'Cookie consent');
     div.innerHTML =
       '<div class="akc-inner">' +
-      '<p>AGYL uses optional analytics cookies after you accept them. We also use Apollo for company-level visitor identification before consent, except when Global Privacy Control is enabled. See our <a href="/privacy">privacy policy</a>.</p>' +
+      '<p>Before you choose, AGYL identifies the company (Apollo) and individual visitors (RB2B) associated with your visit — both suppressed when your browser sends a Global Privacy Control signal. Optional analytics (Google Analytics, Microsoft Clarity, LinkedIn) load only if you Accept all. See our <a href="/privacy">privacy policy</a>.</p>' +
       '<div class="akc-actions">' +
       '<button class="akc-essential" type="button">Essential only</button>' +
       '<button class="akc-accept" type="button">Accept all</button>' +
@@ -157,6 +185,7 @@
 
   function init() {
     loadApollo();
+    loadReb2b();
     var c = getConsent();
     if (c === 'all') { loadOnConsent(); return; }
     if (c === 'essential') return;
