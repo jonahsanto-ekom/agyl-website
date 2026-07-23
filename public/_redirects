@@ -1,1 +1,10 @@
+# Cloudflare Pages _redirects
+# Format: [source] [destination] [status_code]
+
+# ─── Canonical domain ─────────────────────────────────────────────────────────
+# Redirect www → apex.
 https://www.agyl.ai/* https://agyl.ai/:splat 301
+
+# Redirect Pages preview domain → production (prevents Google indexing
+# agyl-website.pages.dev as duplicate content). Parity with ekom.ai.
+https://agyl-website.pages.dev/* https://agyl.ai/:splat 301
