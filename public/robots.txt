@@ -7,4 +7,11 @@ User-agent: *
 Content-Signal: search=yes,ai-train=no,use=reference
 Allow: /
 
+# Block Cloudflare internal paths (email obfuscation, error pages, cdn endpoints).
+# /cdn-cgi/ returns 4xx to crawlers — not indexable content. Industry-standard exclusion.
+# Without this, CF Email Address Obfuscation rewrites mailto: links to /cdn-cgi/l/email-protection
+# and crawlers follow them, generating false 400 errors in Bing Site Scan / GSC.
+# (Parity with ekom.ai robots.txt.)
+Disallow: /cdn-cgi/
+
 Sitemap: https://agyl.ai/sitemap.xml
