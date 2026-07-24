@@ -7,6 +7,13 @@
    Apollo performs company-level visitor identification before consent as an
    approved business-interest exception. It is suppressed for internal devices
    and browsers that send a Global Privacy Control opt-out signal.
+   EXCEPTION (mirrors ekom.ai): RB2B (reb2b) PERSON-LEVEL visitor de-anonymization
+   (key DNXY8HDE28O0, same account as ekom.ai) fires PRE-consent for all visitors,
+   suppressed on internal-flagged devices and Global Privacy Control (no verification
+   bypass). Person-level via a third-party identity chain — disclosed in banner + privacy.
+   Script origin ddwl4m2hdecbv.cloudfront.net.
+   NOTE: as on ekom.ai, outside-counsel review of the RB2B person-level disclosure
+   and sale/sharing treatment is still pending — tracked alongside the ekom.ai item.
    Internal device flag: agyl.ai/?agyl-internal=1 disables all analytics on this browser. */
 (function () {
   // Internal-traffic device flag
@@ -25,6 +32,7 @@
   var GA_ID = 'G-HP9WD0TYLB';
   var CLARITY_ID = 'xb4mkyp6nv';
   var LI_PARTNER_ID = '9648988'; // AGYL LinkedIn Campaign Manager 548962434 (separate from EKOM)
+  var REB2B_KEY = 'DNXY8HDE28O0'; // same RB2B account/key as ekom.ai
 
   function getConsent() {
     var m = document.cookie.match(/(?:^|; )agyl_consent=([^;]*)/);
@@ -108,6 +116,27 @@
     } catch (e) {}
   }
 
+  // RB2B (reb2b) — PERSON-LEVEL visitor de-anonymization (mirrors ekom.ai, same key).
+  // Fires PRE-consent (called from init(), like Apollo), suppressed on internal-flagged
+  // devices and Global Privacy Control (the guards below). No verification bypass.
+  function loadReb2b() {
+    if (window.__agylReb2bLoaded) return;
+    if (isInternal()) return;
+    if (gpcOptOut()) return;
+    window.__agylReb2bLoaded = true;
+    try {
+      (function (key) {
+        if (window.reb2b) return;
+        window.reb2b = { loaded: true };
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://ddwl4m2hdecbv.cloudfront.net/b/' + key + '/' + key + '.js.gz';
+        var f = document.getElementsByTagName('script')[0];
+        f.parentNode.insertBefore(s, f);
+      })(REB2B_KEY);
+    } catch (e) { /* best-effort */ }
+  }
+
   function loadOnConsent() {
     if (isInternal()) return;
     loadGA();
@@ -136,7 +165,7 @@
     div.setAttribute('aria-label', 'Cookie consent');
     div.innerHTML =
       '<div class="akc-inner">' +
-      '<p>AGYL uses optional analytics cookies after you accept them. We also use Apollo for company-level visitor identification before consent, except when Global Privacy Control is enabled. See our <a href="/privacy">privacy policy</a>.</p>' +
+      '<p>Before you choose, AGYL identifies the company (Apollo) and individual visitors (RB2B) associated with your visit — both suppressed when your browser sends a Global Privacy Control signal. Optional analytics (Google Analytics, Microsoft Clarity, LinkedIn) load only if you Accept all. See our <a href="/privacy">privacy policy</a>.</p>' +
       '<div class="akc-actions">' +
       '<button class="akc-essential" type="button">Essential only</button>' +
       '<button class="akc-accept" type="button">Accept all</button>' +
@@ -157,6 +186,7 @@
 
   function init() {
     loadApollo();
+    loadReb2b();
     var c = getConsent();
     if (c === 'all') { loadOnConsent(); return; }
     if (c === 'essential') return;
